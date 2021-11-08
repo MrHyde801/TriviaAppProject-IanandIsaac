@@ -1,0 +1,41 @@
+body {
+  background: #778391;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0 10px;
+}
+
+.questionContent {
+  background: white;
+  padding: 0;
+  border-radius: 10px 10px;
+}
+
+.questionHead {
+  background: #DAF8FC;
+  width: 100%;
+  border-radius: inherit;
+  padding: 8px 0 6px 14px;
+  color: #006699;
+}
+
+.question p {
+  font-weight: bold;
+  padding: 9px 0 0 14px;
+  margin: 0;
+}
+
+.questionOptions {
+  padding: 20px;
+}
+
+/*# sourceMappingURL=styles.css.map */
