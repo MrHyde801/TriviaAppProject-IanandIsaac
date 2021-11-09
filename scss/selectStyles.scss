@@ -1,11 +1,14 @@
+@import 'styles';
+$gunmetal: #2D3339;
 $slategray: #778391;
 $lightcyan: #DAF8FC;
 $tuftsblue: #508FCE;
 $sapphireblue: #006699;
 
-.body {
+body {
     margin:auto;
     padding:0;
+    background-color: $slategray;
     
 }
 
