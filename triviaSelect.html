@@ -14,20 +14,28 @@
 <body>
     <!--The three dropdown menus-->
     <div class="container">
+        <div class="row">
+            <div class="header">
+                <h1>Trivia Night!</h1>
+                <div class="links">
+                    <a href="">New Quiz</a>
+                    <a href="">Stats</a>
+                </div>
+            </div>
+        </div>
         <div class='dropdown'>
-            <button class='dropbtn'>Trivia Catergories</button>
+            <button class='dropbtn' id='categories'>Trivia Categories</button>
             <div class='dropdown-content'>
-                <a href='#'>Any Category</a>
-                <a href='#'>General Knowledge</a>
-                <a href='#'>Sports</a>
+                <a href='#' id='any'>Any Category</a>
+                <a href='#' id='general'>General Knowledge</a>
+                <a href='#' id='sports'>Sports</a>
             </div>
         </div>
 
         <div class='dropdown'>
-            <button class='dropbtn'>Difficulty</button>
-            
+            <button class='dropbtn' id='difficulty'>Difficulty</button>
             <div class='dropdown-content'>
-                <a href='#'>Easy</a>
+                <a href='#' id='easy'>Easy</a>
                 <a href='#'>Medium</a>
                 <a href='#'>Hard</a>
             </div>
@@ -41,7 +49,11 @@
             </div>
         </div>
 
-        <button class='startGame btn btn-primary'>Start Game</button>
+        <button class='startGame btn btn-primary' id='startGame'>Start Game</button>
     </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='./js/main.js'></script>
 </body>
 </html>
