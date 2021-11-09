@@ -1,1 +1,51 @@
-@import 'selectStyles';
+
+$gunmetal: #2D3339;
+$slategray: #778391;
+$lightcyan: #DAF8FC;
+$tuftsblue: #508FCE;
+$sapphireblue: #006699;
+
+body {
+    background: $slategray;
+}
+
+.header {
+    display:flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    background-color: $gunmetal;
+    color: white;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0 10px;
+}
+
+.questionContent {
+    background: white;
+    padding: 0;
+    border-radius: 10px 10px;
+}
+
+.questionHead {
+    background: $lightcyan;
+    width: 100%;
+    border-radius:inherit;
+    padding: 8px 0 6px 14px;
+    color: $sapphireblue;
+}
+
+.question p {
+    font-weight: bold;
+    padding: 9px 0 0 14px;
+    margin: 0;
+}
+
+.questionOptions {
+    padding: 20px;
+
+}
+
