@@ -45,8 +45,9 @@ document.getElementById('typeBoolean').addEventListener('click', function() {
 });
 
 
-
+/*This is where it gets info from the api and send them to functions */
 document.getElementById('startGame').addEventListener('click', function() {
+    // AnyCategory selection section
     if(category == 'AnyCategory') {
         if(difficulty == 'easy') {
             console.log('AnyCategory Complete');
@@ -81,6 +82,7 @@ document.getElementById('startGame').addEventListener('click', function() {
             });
         }
     }
+    // General Knowledge selection section
     if(category == 'GeneralKnowledge') {
         if(difficulty == 'easy') {
             console.log('GeneralKnowledge Complete');
@@ -115,6 +117,7 @@ document.getElementById('startGame').addEventListener('click', function() {
             });
         }
     }
+    // sport selection section
     if(category == 'Sports') {
         if(difficulty == 'easy') {
             // if(questionType == 'all') {}    EXAMPLE for each of the difficulties have each of the question types.
