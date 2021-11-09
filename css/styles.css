@@ -5,7 +5,8 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
+  align-items: center;
+  padding: 10px;
   background-color: #2D3339;
   color: white;
   width: 100%;
