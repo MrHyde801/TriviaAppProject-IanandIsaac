@@ -47,3 +47,16 @@ a {
     padding: 20px;
 
 }
+
+// styles for timer
+.timer {
+    display:flex;
+    justify-content: center;
+    margin: 10px auto;
+    height: 25px;
+    background: $lightcyan;
+    color: $sapphireblue;
+    border: 1px solid $gunmetal;
+    border-radius: 5px;
+}
+@import 'selectStyles';
