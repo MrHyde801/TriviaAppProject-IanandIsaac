@@ -1,6 +1,7 @@
 let category;
 let difficulty = 'any';
 let questionType = 'any';
+let questionArray = [];
 
 /* Category Selection */
 document.getElementById('any').addEventListener('click', function() {
@@ -165,16 +166,17 @@ document.getElementById('typeBoolean').addEventListener('click', function() {
     console.log('QuestionType:BOOLEAN');
 });
 
-
+/* calls the correct function based on the selected choices */
 document.getElementById('startGame').addEventListener('click', function() {
     if(category) {
         if(difficulty == 'any') {
             if(questionType=='any') {
             console.log('1');
-            let questionsPromise = Nones(category);      //make seperate function for when there is no input for difficulty or its put on any
+            let questionsPromise = Nones(category);
             questionsPromise.then((data) => {
                 const questions = data.results;
-                console.log(questions);
+                questionArray = [...questions];
+                console.log(questionArray);
             });
             }
             else {
@@ -182,17 +184,19 @@ document.getElementById('startGame').addEventListener('click', function() {
                 let questionsPromise = NoDiff(category,questionType);
                 questionsPromise.then((data) => {
                     const questions = data.results;
-                    console.log(questions);
+                    questionArray = [...questions];
+                    console.log(questionArray);
                 });
             }
         }
         else {
             if(questionType=='any') {
                 console.log('AnyCategory Complete');
-                let questionsPromise = NoType(category,difficulty);     //has a difficulty but no question type
+                let questionsPromise = NoType(category,difficulty);
                 questionsPromise.then((data) => {
                     const questions = data.results;
-                    console.log(questions);
+                    questionArray = [...questions];
+                    console.log(questionArray);
                 });
             }
             else {
@@ -200,7 +204,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                 let questionsPromise = HasBoth(category,difficulty,questionType);     
                 questionsPromise.then((data) => {
                     const questions = data.results;
-                    console.log(questions);
+                    questionArray = [...questions];
+                    console.log(questionArray);
                 });
             }
         }
@@ -208,10 +213,11 @@ document.getElementById('startGame').addEventListener('click', function() {
         if(difficulty == 'any') {
             if(questionType=='any') {
             console.log('AnyCategory Complete');
-            let questionsPromise = NonesAny();      //make seperate function for when there is no input for difficulty or its put on any
+            let questionsPromise = NonesAny();
             questionsPromise.then((data) => {
                 const questions = data.results;
-                console.log(questions);
+                questionArray = [...questions];
+                console.log(questionArray);
             });
             }
             else {
@@ -219,17 +225,19 @@ document.getElementById('startGame').addEventListener('click', function() {
                 let questionsPromise = NoDiffAny(questionType);
                 questionsPromise.then((data) => {
                     const questions = data.results;
-                    console.log(questions);
+                    questionArray = [...questions];
+                    console.log(questionArray);
                 });
             }
         }
         else {
             if(questionType=='any') {
                 console.log('AnyCategory Complete');
-                let questionsPromise = NoTypeAny(difficulty);     //has a difficulty but no question type
+                let questionsPromise = NoTypeAny(difficulty);
                 questionsPromise.then((data) => {
                     const questions = data.results;
-                    console.log(questions);
+                    questionArray = [...questions];
+                    console.log(questionArray);
                 });
             }
             else {
@@ -237,7 +245,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                 let questionsPromise = HasBothAny(difficulty,questionType);     
                 questionsPromise.then((data) => {
                     const questions = data.results;
-                    console.log(questions);
+                    questionArray = [...questions];
+                    console.log(questionArray);
                 });
             }
         }
@@ -245,7 +254,7 @@ document.getElementById('startGame').addEventListener('click', function() {
 });
 
 
-
+/* The functions that call the correct API link depending on selections */
 function Nones(category) { 
     return fetch(`https://opentdb.com/api.php?amount=10&category=${category}`).then(
         (response) => response.json()
@@ -293,3 +302,5 @@ function HasBothAny(difficulty,type) {
         (response) => response.json()
     );
 }
+
+

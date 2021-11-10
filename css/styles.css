@@ -19,7 +19,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -65,6 +65,7 @@
 .startGame {
   margin-top: 70px;
   background-color: #508FCE;
+  border-radius: none;
 }
 
 body {
