@@ -26,6 +26,7 @@ $sapphireblue: #006699;
     display: inline-block;
     width:100%;
     margin-top:70px;
+  
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -38,6 +39,9 @@ $sapphireblue: #006699;
     z-index: 1;
     width:70%;
     border-radius:10px;
+    max-height:300px;
+    overflow:auto;
+    min-width:300px;
   }
   
   /* Links inside the dropdown */
