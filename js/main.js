@@ -5,6 +5,8 @@ let timer_is_on = 0;
 let minutes = document.getElementById('minutes')
 let seconds = document.getElementById('seconds')
 
+
+
 function render() {
     timedCount()
 }
