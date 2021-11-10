@@ -177,6 +177,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
+                // document.getElementById('test').innerHTML += questionArray[0].question; EXAMPLE OF HOW TO ACCESS THE QUESTIONS
             });
             }
             else {
