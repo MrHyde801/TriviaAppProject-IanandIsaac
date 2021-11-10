@@ -1,5 +1,5 @@
-let timer = 50
-let minutesTime = 00
+let timer = "0" + 0
+let minutesTime = "0" + 0
 let t
 let timer_is_on = 0;
 let minutes = document.getElementById('minutes')
@@ -14,11 +14,19 @@ console.log(seconds.innerHTML)
 function timedCount() {
     seconds.innerHTML = timer
     minutes.innerHTML = minutesTime
-    timer += 1;
+    timer++;
+    parseInt(timer)
     t = setTimeout(timedCount, 1000);
+    if(timer < 10) {
+        timer = "0" + timer;
+    }
     if(timer == 60) {
-        minutesTime +=1;   
-        timer = 0
+        minutesTime++;
+        minutesTime = "0" + minutesTime;
+        timer = "0" + 0
+    }
+    if(minutesTime >= 10) {
+        minutesTime = minutesTime - '0'
     }
 }
 
@@ -31,7 +39,7 @@ function startCount() {
 }
 
 function submitQuiz() {
-    
+
 }
 
 
