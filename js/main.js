@@ -170,7 +170,7 @@ document.getElementById('typeBoolean').addEventListener('click', function() {
 document.getElementById('startGame').addEventListener('click', function() {
     if(category) {
         if(difficulty == 'any') {
-            if(questionType=='any') {
+            if(questionType=='any') {  // runs when there is a selected category but no selected difficulty or question type
             console.log('1');
             let questionsPromise = Nones(category);
             questionsPromise.then((data) => {
@@ -180,7 +180,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                 // document.getElementById('test').innerHTML += questionArray[0].question; EXAMPLE OF HOW TO ACCESS THE QUESTIONS
             });
             }
-            else {
+            else { // runs when there is a selected category and a selected question type but no selected difficulty
                 console.log('AnyCategory Complete');
                 let questionsPromise = NoDiff(category,questionType);
                 questionsPromise.then((data) => {
@@ -190,8 +190,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                 });
             }
         }
-        else {
-            if(questionType=='any') {
+        else { 
+            if(questionType=='any') { // runs when there is a selected category and a selected category and a selected difficulty but no selected question type
                 console.log('AnyCategory Complete');
                 let questionsPromise = NoType(category,difficulty);
                 questionsPromise.then((data) => {
@@ -200,7 +200,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                     console.log(questionArray);
                 });
             }
-            else {
+            else { // runs when there is a selected category, difficulty, and question type
                 console.log('AnyCategory Complete');
                 let questionsPromise = HasBoth(category,difficulty,questionType);     
                 questionsPromise.then((data) => {
@@ -212,7 +212,7 @@ document.getElementById('startGame').addEventListener('click', function() {
         }
     } else {
         if(difficulty == 'any') {
-            if(questionType=='any') {
+            if(questionType=='any') { // runs when nothing has been selected
             console.log('AnyCategory Complete');
             let questionsPromise = NonesAny();
             questionsPromise.then((data) => {
@@ -221,7 +221,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                 console.log(questionArray);
             });
             }
-            else {
+            else { // runs when only question type has been selected
                 console.log('AnyCategory Complete');
                 let questionsPromise = NoDiffAny(questionType);
                 questionsPromise.then((data) => {
@@ -232,7 +232,7 @@ document.getElementById('startGame').addEventListener('click', function() {
             }
         }
         else {
-            if(questionType=='any') {
+            if(questionType=='any') { // runs when only difficulty has been selected
                 console.log('AnyCategory Complete');
                 let questionsPromise = NoTypeAny(difficulty);
                 questionsPromise.then((data) => {
@@ -242,7 +242,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                 });
             }
             else {
-                console.log('AnyCategory Complete');
+                console.log('AnyCategory Complete'); // runs when difficulty and quesion type have been selected but not category
                 let questionsPromise = HasBothAny(difficulty,questionType);     
                 questionsPromise.then((data) => {
                     const questions = data.results;
