@@ -410,3 +410,23 @@ document.getElementById("testing-questions").innerHTML =
         </div>
     </div>`
 }
+
+
+/* Stats Page JS */ 
+let gamesPlayed = 0;
+
+document.getElementById('startGame').addEventListener('click', function() {
+    gamesPlayed++;
+    save();
+    let answer = retrieve();
+    console.log(answer);
+    
+});
+function save() {
+    localStorage.setItem('gamesPlayed', JSON.stringify(gamesPlayed));
+}
+function retrieve() {
+    return JSON.parse(localStorage.getItem('gamesPlayed'));
+}
+
+
