@@ -1,0 +1,112 @@
+@import 'selectStyles';
+
+
+$gunmetal: #2D3339;
+$slategray: #778391;
+$lightcyan: #DAF8FC;
+$tuftsblue: #508FCE;
+$sapphireblue: #006699;
+
+@mixin header-and-footer {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px;
+    background-color: $gunmetal;
+    color: white;
+    //styling links inside the header   
+    a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0 10px;
+    }
+}
+
+body {
+    background: $slategray;
+}
+
+//styling for header
+.header {
+    position: sticky;
+    top: 0;
+}
+
+.head {
+    @include header-and-footer()
+}
+
+
+
+//styling for questions
+.questionContent {
+    background: white;
+    padding: 0;
+    margin: 10px 0;
+    border-radius: 10px 10px;
+    .questionHead {
+        background: $lightcyan;
+        width: 100%;
+        border-radius:inherit;
+        padding: 8px 14px 6px 14px;
+        color: $sapphireblue;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        input {
+            background-color: $sapphireblue;
+            color: white;
+            border: 1px solid $sapphireblue;
+            border-radius: 20px;
+            font-size: 14px;
+            height: 25px;
+        }
+    }
+    .question p {
+        font-weight: bold;
+        padding: 9px 0 0 14px;
+        margin: 0;
+    }
+    .questionOptions {
+        padding: 20px;
+    
+    }
+}
+
+// styles for timer
+.timer {
+    display:flex;
+    justify-content: center;
+    margin: 10px auto;
+    height: 25px;
+    background: $lightcyan;
+    color: $sapphireblue;
+    border: 1px solid $gunmetal;
+    border-radius: 5px;
+}
+
+.complete {
+    display:flex;
+    justify-content: center;
+
+}
+
+// Styling for footer
+.footer {
+    position: fixed;
+    width: 102%;
+    bottom:0;
+    .foot {
+        @include header-and-footer;
+        height: 40px;
+        p {
+            margin-bottom: 0;
+        }
+        input {
+            background: $lightcyan;
+            color: $sapphireblue;
+            border: 1px solid $gunmetal;
+        }
+    }
+}
+

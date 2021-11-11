@@ -5,9 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css" class="rel">
+    
+ 
+
 </head>
 <body>
+    <div class="row header">
+        <div class="head">
+            <h1>Trivia Night!</h1>
+            <div class="links">
+                <a href="stats.html">Stats</a>
+                <!-- This link is just to switch between pages. It will be removed before presentation -->
+                <a href="questions.html">Question</a>
+            </div>
+        </div>
+    </div>
+    <!--The three dropdown menus-->
+    <div class="container">
+        <div class='dropdown'>
+            <button class='dropbtn' id='categories'>Trivia Categories</button>
+            <div class='dropdown-content'>
+                <a href='#' id='any'>Any Category</a>
+                <a href='#' id='general'>General Knowledge</a>
+                <a href='#' id='books'>Entertainment:Books</a>
+                <a href='#' id='film'>Entertainment:Film</a>
+                <a href='#' id='music'>Entertainment:Music</a>
+                <a href='#' id='musicTheatres'>Entertainment:Musicals & Theatres</a>
+                <a href='#' id='television'>Entertainment:Television</a>
+                <a href='#' id='videoGames'>Entertainment:Video Games</a>
+                <a href='#' id='boardGames'>Entertainment:Board Games</a>
+                <a href='#' id='comics'>Entertainment:Comics</a>
+                <a href='#' id='anime'>Entertainment:Japanese Anime & Manga</a>
+                <a href='#' id='cartoons'>Entertainment:Cartoons & Animations</a>
+                <a href='#' id='scienceNature'>Science:Nature</a>
+                <a href='#' id='computers'>Science:Computers</a>
+                <a href='#' id='math'>Science:Mathematics</a>
+                <a href='#' id='gadgets'>Science:Gadgets</a>
+                <a href='#' id='mythology'>Mythology</a>
+                <a href='#' id='sports'>Sports</a>
+                <a href='#' id='geography'>Geography</a>
+                <a href='#' id='history'>History</a>
+                <a href='#' id='politics'>Politics</a>
+                <a href='#' id='art'>Art</a>
+                <a href='#' id='celebrities'>Celebrities</a>
+                <a href='#' id='animals'>Animals</a>
+                <a href='#' id='vehicles'>Vehicles</a>
 
-    
+                
+
+            </div>
+        </div>
+
+        <div class='dropdown'>
+            <button class='dropbtn' id='difficulty'>Difficulty</button>
+            <div class='dropdown-content'>
+                <a href='#' id='diffAny'>Any</a>
+                <a href='#' id='easy'>Easy</a>
+                <a href='#' id='medium'>Medium</a>
+                <a href='#' id='hard'>Hard</a>
+            </div>
+        </div>
+
+        <div class='dropdown'>
+            <button class='dropbtn' id='questionType'>Question Type</button>
+            <div class='dropdown-content'>
+                <a href='#' id='typeAll'>All</a>
+                <a href='#' id='typeMultiple'>Multiple Choice</a>
+                <a href='#' id='typeBoolean'>True/False</a>
+            </div>
+        </div>
+
+        <button class='startGame btn btn-primary' id='startGame'>Start Game</button>
+    </div>
+
+    <div id='test'></div>
+
+    <div id="testing-questions">
+        
+    </div>
+
+    <div class="row footer">
+        <div class="foot">
+            <p>&copy;Moss-Hyde</p>
+        </div>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='./js/main.js'></script>
 </body>
 </html>
