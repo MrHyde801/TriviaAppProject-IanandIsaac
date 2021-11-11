@@ -1,104 +1,4 @@
 body {
-  background: #778391;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 30px;
-  background-color: #2D3339;
-  color: white;
-}
-.head a {
-  text-decoration: none;
-  color: inherit;
-  padding: 0 10px;
-}
-
-.questionContent {
-  background: white;
-  padding: 0;
-  margin: 10px 0;
-  border-radius: 10px 10px;
-}
-.questionContent .questionHead {
-  background: #DAF8FC;
-  width: 100%;
-  border-radius: inherit;
-  padding: 8px 14px 6px 14px;
-  color: #006699;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.questionContent .questionHead input {
-  background-color: #006699;
-  color: white;
-  border: 1px solid #006699;
-  border-radius: 20px;
-  font-size: 14px;
-  height: 25px;
-}
-.questionContent .question p {
-  font-weight: bold;
-  padding: 9px 0 0 14px;
-  margin: 0;
-}
-.questionContent .questionOptions {
-  padding: 20px;
-}
-
-.timer {
-  display: flex;
-  justify-content: center;
-  margin: 10px auto;
-  height: 25px;
-  background: #DAF8FC;
-  color: #006699;
-  border: 1px solid #2D3339;
-  border-radius: 5px;
-}
-
-.complete {
-  display: flex;
-  justify-content: center;
-}
-
-.footer {
-  position: fixed;
-  width: 102%;
-  bottom: 0;
-}
-.footer .foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 30px;
-  background-color: #2D3339;
-  color: white;
-  height: 40px;
-}
-.footer .foot a {
-  text-decoration: none;
-  color: inherit;
-  padding: 0 10px;
-}
-.footer .foot p {
-  margin-bottom: 0;
-}
-.footer .foot input {
-  background: #DAF8FC;
-  color: #006699;
-  border: 1px solid #2D3339;
-}
-
-body {
   margin: auto;
   padding: 0;
   background-color: #778391;
@@ -120,7 +20,7 @@ body {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -133,6 +33,9 @@ body {
   z-index: 1;
   width: 70%;
   border-radius: 10px;
+  max-height: 300px;
+  overflow: auto;
+  min-width: 300px;
 }
 
 /* Links inside the dropdown */
@@ -163,6 +66,8 @@ body {
 .startGame {
   margin-top: 70px;
   background-color: #508FCE;
+  border-radius: none;
+  float: right;
 }
 
 /*# sourceMappingURL=selectStyles.css.map */
