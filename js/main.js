@@ -225,7 +225,6 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
-                testingQuestionPop(questionArray);
                 // document.getElementById('test').innerHTML += questionArray[0].question; EXAMPLE OF HOW TO ACCESS THE QUESTIONS
             });
             }
@@ -236,7 +235,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-                    testingQuestionPop(questionArray);
+
                 });
             }
         }
@@ -248,7 +247,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-                    testingQuestionPop(questionArray);
+
                 });
             }
             else { // runs when there is a selected category, difficulty, and question type
@@ -258,7 +257,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-                    testingQuestionPop(questionArray);
+
                 });
             }
         }
@@ -271,7 +270,9 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
-                testingQuestionPop(questionArray);
+                saveData() //testing function on one before adding to all
+                testingQuestionPop(questionArray) //testing function on one before adding all
+                
             });
             }
             else { // runs when only question type has been selected
@@ -281,7 +282,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-                    testingQuestionPop(questionArray);
+
                 });
             }
         }
@@ -293,7 +294,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-                    testingQuestionPop(questionArray);
+
                 });
             }
             else {
@@ -303,7 +304,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-                    testingQuestionPop(questionArray);
+
+                    
                 });
             }
         }
@@ -361,7 +363,20 @@ function HasBothAny(difficulty,type) {
 }
 
 
-function quizTemplate(quiz,index) {
+//BLOCK I AM TRYING TO USE TO FIGURE OUT
+
+function saveData(quizdeets) {
+    localStorage.setItem('json-template', quizdeets)
+    localStorage.setItem('json-object', JSON.stringify(questionArray))
+}
+
+window.onload = function() {
+    let quizInfo = localStorage.getItem('json-template')
+    console.log(typeof(quizInfo))
+    
+};
+
+function quizInnerTemplate(quiz,index) {
     return `
         <div class="questionContent">
             <div class="questionHead">
@@ -402,11 +417,29 @@ function quizTemplate(quiz,index) {
     `
 }
 
-function testingQuestionPop() {
-document.getElementById("testing-questions").innerHTML =
-    `<div id="testing-questions">
+// mainvpage that works
+function testingQuestionPop(element) {
+let elementTest = document.getElementById("testing-questions")
+let quizTemplate =
+    `<div id="quiz-question">
        <div class="row g-4">
-       ${questionArray.map(quizTemplate).join('')}  
+       ${element.map(quizInnerTemplate).join('')}  
         </div>
     </div>`
+    elementTest.innerHTML = quizTemplate;
+    saveData(quizTemplate)
 }
+
+// function testingQuestionPop(element) {
+//     let quizTemplate =
+//         `<div id="quiz-question">
+//            <div class="row g-4">
+//            ${element.map(quizInnerTemplate).join('')}  
+//             </div>
+//         </div>`
+//         saveData(quizTemplate)
+//     }
+
+
+
+
