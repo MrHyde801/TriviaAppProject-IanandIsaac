@@ -111,11 +111,14 @@ body {
 }
 
 
+// Styling for stat page
+
 .statContent {
     background:white;
     padding:0;
     margin: 10px 0;
     border-radius: 10px 10px;
+    margin-bottom:40px;
     .statHead {
         background: $lightcyan;
         width: 100%;
@@ -128,12 +131,13 @@ body {
     }
     .statInfo {
         display:flex;
-        justify-content:left;
+        justify-content:center;
         align-items:center;
         min-height:100px;
+        flex-direction:column;
         p {
-            margin-left:50px;
             font-size:20px;
+            margin:0;
         }
     }
 }

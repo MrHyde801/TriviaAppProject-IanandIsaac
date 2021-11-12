@@ -183,6 +183,7 @@ body {
   padding: 0;
   margin: 10px 0;
   border-radius: 10px 10px;
+  margin-bottom: 40px;
 }
 .statContent .statHead {
   background: #DAF8FC;
@@ -196,13 +197,14 @@ body {
 }
 .statContent .statInfo {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   min-height: 100px;
+  flex-direction: column;
 }
 .statContent .statInfo p {
-  margin-left: 50px;
   font-size: 20px;
+  margin: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
