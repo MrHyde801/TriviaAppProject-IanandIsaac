@@ -1,55 +1,13 @@
-// let timer = "0" + 0
-// let minutesTime = "0" + 0
-// let t
-// let timer_is_on = 0;
-// let minutes = document.getElementById('minutes')
-// let seconds = document.getElementById('seconds')
 
-
-
-// function render() {
-//     timedCount()
-// }
-
-// console.log(seconds.innerHTML)
-
-// function timedCount() {
-//     seconds.innerHTML = timer
-//     minutes.innerHTML = minutesTime
-//     timer++;
-//     parseInt(timer)
-//     t = setTimeout(timedCount, 1000);
-//     if(timer < 10) {
-//         timer = "0" + timer;
-//     }
-//     if(timer == 60) {
-//         minutesTime++;
-//         minutesTime = "0" + minutesTime;
-//         timer = "0" + 0
-//     }
-//     if(minutesTime >= 10) {
-//         minutesTime = minutesTime - '0'
-//     }
-// }
-
-
-// function startCount() {
-//     if(!timer_is_on) {
-//         timer_is_on = 1
-//         timedCount()
-//     }
-// }
-
-// function submitQuiz() {
-
-// }
-
-// render()
 
 let category;
 let difficulty = 'any';
 let questionType = 'any';
 let questionArray = [];
+
+window.onload = function() {
+    console.log("Hot Moms are loaded")
+}
 
 /* Category Selection */
 document.getElementById('any').addEventListener('click', function() {
@@ -225,7 +183,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
-                // document.getElementById('test').innerHTML += questionArray[0].question; EXAMPLE OF HOW TO ACCESS THE QUESTIONS
+                localStorage.setItem('quizArray', JSON.stringify(questionArray)) // document.getElementById('test').innerHTML += questionArray[0].question; EXAMPLE OF HOW TO ACCESS THE QUESTIONS
+                window.location.assign('questions.html')
             });
             }
             else { // runs when there is a selected category and a selected question type but no selected difficulty
@@ -235,7 +194,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-
+                    localStorage.setItem('quizArray', JSON.stringify(questionArray))
+                    window.location.assign('questions.html')
                 });
             }
         }
@@ -247,7 +207,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-
+                    localStorage.setItem('quizArray', JSON.stringify(questionArray))
+                    window.location.assign('questions.html')
                 });
             }
             else { // runs when there is a selected category, difficulty, and question type
@@ -257,7 +218,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-
+                    localStorage.setItem('quizArray', JSON.stringify(questionArray))
+                    window.location.assign('questions.html')
                 });
             }
         }
@@ -270,8 +232,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
-                saveData() //testing function on one before adding to all
-                testingQuestionPop(questionArray) //testing function on one before adding all
+                localStorage.setItem('quizArray', JSON.stringify(questionArray))     //testing function on one before adding all
+                window.location.assign('questions.html')
                 
             });
             }
@@ -282,7 +244,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-
+                    localStorage.setItem('quizArray', JSON.stringify(questionArray))
+                    window.location.assign('questions.html')
                 });
             }
         }
@@ -294,7 +257,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-
+                    localStorage.setItem('quizArray', JSON.stringify(questionArray))
+                    window.location.assign('questions.html')
                 });
             }
             else {
@@ -304,12 +268,15 @@ document.getElementById('startGame').addEventListener('click', function() {
                     const questions = data.results;
                     questionArray = [...questions];
                     console.log(questionArray);
-
+                    localStorage.setItem('quizArray', JSON.stringify(questionArray))
+                    window.location.assign('questions.html')
                     
                 });
             }
         }
     }
+
+    
 });
 
 
@@ -365,80 +332,7 @@ function HasBothAny(difficulty,type) {
 
 //BLOCK I AM TRYING TO USE TO FIGURE OUT
 
-function saveData(quizdeets) {
-    localStorage.setItem('json-template', quizdeets)
-    localStorage.setItem('json-object', JSON.stringify(questionArray))
-}
 
-window.onload = function() {
-    let quizInfo = localStorage.getItem('json-template')
-    console.log(typeof(quizInfo))
-    
-};
-
-function quizInnerTemplate(quiz,index) {
-    return `
-        <div class="questionContent">
-            <div class="questionHead">
-                <h2 id="questionTitle">Question ${index +=1}</h2>
-            </div>
-            <div class="question">
-                <p id="qText">${quiz.question}?</p>
-            </div>
-            <div class="questionOptions">
-                <form>
-                    <div class="row g-3">
-                        <div class="col answers">
-                            <input type="radio" id="answer1" name="answer" value="first">
-                            <label for="answer1">${quiz.correct_answer}</label><br>
-                        </div>
-                        <div class="col answers">
-                            <input type="radio" id="answer2" name="answer" value="second">
-                            <label for="answer2">${quiz.incorrect_answer}</label><br>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="col answers">
-                            <input type="radio" id="answer3" name="answer" value="third">
-                            <label for="answer3">${quiz.incorrect_answer}</label>
-                        </div>
-                        <div class="col answers">
-                            <input type="radio" id="answer4" name="answer" value="fourth">
-                            <label for="answer4">${quiz.incorrect_answer}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col">
-                                <input type="submit" value="submit">
-                            </div>
-                    </div>
-                  </form>
-            </div>
-        </div>
-    `
-}
-
-// mainvpage that works
-function testingQuestionPop(element) {
-let elementTest = document.getElementById("testing-questions")
-let quizTemplate =
-    `<div id="quiz-question">
-       <div class="row g-4">
-       ${element.map(quizInnerTemplate).join('')}  
-        </div>
-    </div>`
-    elementTest.innerHTML = quizTemplate;
-    saveData(quizTemplate)
-}
-
-// function testingQuestionPop(element) {
-//     let quizTemplate =
-//         `<div id="quiz-question">
-//            <div class="row g-4">
-//            ${element.map(quizInnerTemplate).join('')}  
-//             </div>
-//         </div>`
-//         saveData(quizTemplate)
-//     }
 
 
 
