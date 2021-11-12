@@ -5,9 +5,7 @@ let difficulty = 'any';
 let questionType = 'any';
 let questionArray = [];
 
-window.onload = function() {
-    console.log("Hot Moms are loaded")
-}
+
 
 /* Category Selection */
 document.getElementById('any').addEventListener('click', function() {
