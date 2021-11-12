@@ -1,5 +1,3 @@
-
-
 let category;
 let difficulty = 'any';
 let questionType = 'any';
@@ -181,8 +179,8 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
-                localStorage.setItem('quizArray', JSON.stringify(questionArray)) // document.getElementById('test').innerHTML += questionArray[0].question; EXAMPLE OF HOW TO ACCESS THE QUESTIONS
-                window.location.assign('questions.html')
+                localStorage.setItem('quizArray', JSON.stringify(questionArray)) // This stores the question array into localStorage
+                window.location.assign('questions.html') // When the user presses start game this loads the next page.       I copied ^^ line and this into every if statement to work for every selected choice
             });
             }
             else { // runs when there is a selected category and a selected question type but no selected difficulty
@@ -230,7 +228,7 @@ document.getElementById('startGame').addEventListener('click', function() {
                 const questions = data.results;
                 questionArray = [...questions];
                 console.log(questionArray);
-                localStorage.setItem('quizArray', JSON.stringify(questionArray))     //testing function on one before adding all
+                localStorage.setItem('quizArray', JSON.stringify(questionArray))   
                 window.location.assign('questions.html')
                 
             });
@@ -327,8 +325,6 @@ function HasBothAny(difficulty,type) {
     );
 }
 
-
-//BLOCK I AM TRYING TO USE TO FIGURE OUT
 
 
 
