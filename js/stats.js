@@ -6,7 +6,7 @@ let gamesPlayed = retrieve();
 
 
 
-document.getElementById('startGame').addEventListener('click', function() {
+document.getElementById('startGame').addEventListener('click', function() { // This is on the triviaSelect page | 'testButton' should be 'startGame'
     gamesPlayed++;
     save();
     let answer = retrieve();
@@ -21,7 +21,11 @@ function retrieve() {
 function numQuestionsPop(answer) {
     console.log(answer);
     let output = ('You have played: ' + answer + ' quizzes');
-    document.getElementById('stat').innerHTML = output;
+    document.getElementById('stat').innerHTML = output; // Don't know how to change the html on a different page gives error: Cannot set properties of null
 }
+
+
+
+
 
 

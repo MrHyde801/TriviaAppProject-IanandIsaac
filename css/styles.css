@@ -21,7 +21,8 @@ body {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin-top: 60px;
+  margin-top: 2vh;
+  margin-bottom: 10vh;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -65,7 +66,7 @@ body {
 
 /* Start the game button */
 .startGame {
-  margin-top: 70px;
+  margin-top: 10vh;
   background-color: #DAF8FC;
   border-radius: none;
   float: right;
@@ -85,6 +86,7 @@ body {
 .header {
   position: sticky;
   top: 0;
+  z-index: 100;
 }
 
 .head {
@@ -205,6 +207,11 @@ body {
 .statContent .statInfo p {
   font-size: 20px;
   margin: 0;
+}
+
+.testButton {
+  width: 100px;
+  height: 50px;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -30,7 +30,8 @@ body {
     position: relative;
     display: inline-block;
     width:100%;
-    margin-top:60px;
+    margin-top:2vh;
+    margin-bottom:10vh;
   
   }
   
@@ -75,7 +76,7 @@ body {
 
   /* Start the game button */
   .startGame {
-    margin-top:70px;
+    margin-top:10vh;
     background-color: $lightcyan;
     border-radius: none;
     float:right;

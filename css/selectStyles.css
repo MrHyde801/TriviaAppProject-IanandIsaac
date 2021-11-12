@@ -21,7 +21,8 @@ body {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin-top: 60px;
+  margin-top: 2vh;
+  margin-bottom: 10vh;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -65,7 +66,7 @@ body {
 
 /* Start the game button */
 .startGame {
-  margin-top: 70px;
+  margin-top: 10vh;
   background-color: #DAF8FC;
   border-radius: none;
   float: right;
