@@ -214,4 +214,18 @@ body {
   height: 50px;
 }
 
+.visibility-toggle {
+  visibility: hidden;
+}
+
+.statsPage {
+  background-color: #2D3339;
+  border: none;
+  color: white;
+}
+
+.statsContainer {
+  display: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

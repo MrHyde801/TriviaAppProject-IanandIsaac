@@ -14,14 +14,15 @@
         <div class="head">
             <h1>Trivia Night!</h1>
             <div class="links">
-                <a href="stats.html" id='statsPage'>Stats</a>
+                
+                <button id='statsPage' class='statsPage' onclick='toggleShow()'>Stats</button>
                 <!-- This link is just to switch between pages. It will be removed before presentation -->
                 <a href="questions.html">Question</a>
             </div>
         </div>
     </div>
     <!--The three dropdown menus-->
-    <div class="container">
+    <div class="selectContainer" id='selectContainer'>
         <div class='dropdown'>
             <button class='dropbtn' id='categories'>Trivia Categories</button>
             
@@ -75,6 +76,50 @@
         </div>
 
         <button class='startGame btn btn-primary' id='startGame'>Start Game</button>
+    </div>
+
+
+
+
+
+    <!--Start of stats page-->
+    <div class="statsContainer" id='statsContainer'>
+        <div class="statContent">
+            <div class="statHead">
+                <h2>Total number of games played</h2>
+            </div>
+            <div class="statInfo">
+                <p id='stat'>You have played: _ games</p>
+            </div>
+        </div>
+
+        <div class="statContent">
+            <div class="statHead">
+                <h2>Total questions correct</h2>
+            </div>
+            <div class="statInfo">
+                <p>You have gotten a total of 0 questions correct</p>
+                <p>This is 0%</p>
+            </div>
+        </div>
+
+        <div class="statContent">
+            <div class="statHead">
+                <h2>Your most played category</h2>
+            </div>
+            <div class="statInfo">
+                <p>The category you have played the most is: </p>
+            </div>
+        </div>
+
+        <div class="statContent">
+            <div class="statHead">
+                <h2>Average quiz speed</h2>
+            </div>
+            <div class="statInfo">
+                <p>On average it takes you _:__ to finish a quiz</p>
+            </div>
+        </div>
     </div>
 
     

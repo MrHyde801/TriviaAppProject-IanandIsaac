@@ -147,3 +147,19 @@ body {
     width:100px;
     height:50px;
 }
+
+.visibility-toggle{
+    visibility: hidden;
+}
+
+.statsPage {
+    background-color: $gunmetal;
+    border:none;
+    color:white;
+}
+
+.statsContainer {
+    display:none;
+}
+
+

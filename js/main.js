@@ -414,4 +414,28 @@ document.getElementById("testing-questions").innerHTML =
 
 
 
+// Start of stats JS
+
+function toggleShow() {
+    var x = document.getElementById('selectContainer');
+    var y = document.getElementById('statsContainer');
+    var z = document.getElementById('statsPage');
+    if(x.style.display === 'none') {
+        y.style.display = 'none';
+        x.style.display = 'block';
+        z.innerHTML = 'Stats';
+    } else {
+        y.style.display = 'block';
+        x.style.display = 'none';
+        z.innerHTML = 'New Quiz';
+    }
+}
+
+
+
+
+
+
+
+
 
