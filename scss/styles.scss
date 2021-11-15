@@ -54,6 +54,12 @@ body {
         display:flex;
         justify-content: space-between;
         align-items: center;
+        #correct {
+            color: green;
+        }
+        #incorrect {
+            color: rgb(184, 67, 67);
+        }
         input {
             background-color: $sapphireblue;
             color: white;

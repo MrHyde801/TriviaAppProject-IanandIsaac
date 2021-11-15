@@ -61,63 +61,10 @@ render()
 // console.log('timer took' + (end.getTime() - start.getTimezoneOffset()) + 'sec')
 //Use something like this to when the user clicks submit quiz it will take the time and 
 
-function quizInnerTemplate(quiz,index) {
-    // console.log(quiz) no longer an array of objects the output is just the 10 objects
-    let answers = []
-    for(let [key,value] of Object.entries(quiz)) {
-        // console.log(`${key}, ${value}`)
-        if(key == 'correct_answer') {
-            answers.push(value)
-        } if(key == 'incorrect_answers') {
-            answers.push(value[0])
-            answers.unshift(value[1])
-            answers.push(value[2])
-        }
-    }
-    return `
-        <div class="questionContent">
-            <div class="questionHead">
-                <h2 id="questionTitle">Question ${index +=1}</h2>
-                <input type = "submit" value="submit answer" id="submit-Answer">
-            </div>
-            <div class="question">
-                <p id="qText">${quiz.question}?</p>
-            </div>
-            <div class="questionOptions">
-                <form>
-                    <div class="row g-3">
-                        <div class="col answers">
-                            <input type="radio" id="answer1" name="answer" value="first">
-                            <label for="answer1">${answers[0]}</label><br>
-                        </div>
-                        <div class="col answers">
-                            <input type="radio" id="answer2" name="answer" value="second">
-                            <label for="answer2">${answers[1]}</label><br>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="col answers">
-                            <input type="radio" id="answer3" name="answer" value="third">
-                            <label for="answer3">${answers[2]}</label>
-                        </div>
-                        <div class="col answers">
-                            <input type="radio" id="answer4" name="answer" value="fourth">
-                            <label for="answer4">${answers[3]}</label>
-                        </div>
-                    </div>
-                  </form>
-            </div>
-        </div>
-    `
-    
-}
 
-// mainvpage that works
+
+// mainfunction to populate template
 function testingQuestionPop(element) {
-    // console.log(element) same as console log in line 4
-    let answerReturn = pushrandomAnswers(element)
-    answerShuffler(answerReturn)
-    let please = answerReturn
-    //creates answers in random order shows array with
 
     let elementTest = document.getElementById("quizQuestions")
     let quizTemplate =
@@ -127,25 +74,62 @@ function testingQuestionPop(element) {
             </div>
         </div>`
         elementTest.innerHTML = quizTemplate;
-        console.log(please)
+        
 }
 
-function pushrandomAnswers(element) {
-    let arrays = []
-    for(answer of element) {
-        let array = []
-       array.push(answer.correct_answer)
-       array.push(answer.incorrect_answers[0])
-       array.push(answer.incorrect_answers[1])
-       array.push(answer.incorrect_answers[2])
-       arrays.push(array)
-    //    console.log(answer) same as quiz inside innerTemplate
+function quizInnerTemplate(quiz,index) {
+    let answers = []
+    for(let [key,value] of Object.entries(quiz)) { //this gets the answers based on correct/incorrect key and populates it into an array
+        // console.log(`${key}, ${value}`)
+        if(key === 'correct_answer') {
+            answers.push(['correct_answer', value])
+        } if(key === 'incorrect_answers') {
+            answers.push(['incorrect_answers', value[0]])
+            answers.push(['incorrect_answers', value[1]])
+            answers.push(['incorrect_answers', value[2]])
+        } 
     }
-    return arrays
-}
 
-function answerShuffler(element) {
-    element = element.map(answers => {
-        return answers.sort((a, b) => {return 0.5 - Math.random()})
-      })
+
+    answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
+    // console.log(answers)
+
+    return `
+        <div class="questionContent">
+            <div class="questionHead">
+                <h2>Question ${index += 1}</h2>
+                <div id="question${index}">
+                    <h3 id="incorrect">Incorrect!</h3>
+                    <input type = "submit" value="submitAnswer" id="submit-Answer" form="form${index}">
+                </div>
+            </div>
+            <div class="question">
+                <p id="qText">${quiz.question}?</p>
+            </div>
+            <div class="questionOptions">
+                <form id="form${index}">
+                    <div class="row g-3">
+                        <div class="col answers">
+                            ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="answer" value="first">`: ''}
+                            <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label><br>
+                        </div>
+                        <div class="col answers">
+                            ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="answer" value="second">` : ''}
+                            <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label><br>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col answers">
+                            ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}" name="answer" value="third">`: ''}
+                            <label for="answer3">${(answers[2][1] !== undefined)? answers[2][1] : ''}</label>
+                        </div>
+                        <div class="col answers">
+                            ${(answers[3][1] !== undefined) ? `<input type="radio" id="${answers[3][0]}" name="answer" value="fourth">` : ''}
+                            <label for="answer4">${(answers[3][1] !== undefined)? answers[3][1] : ''}</label>
+                        </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    `
+    //condense the 2 ternary operators into one eventually
 }

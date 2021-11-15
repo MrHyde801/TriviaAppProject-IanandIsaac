@@ -110,6 +110,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.questionContent .questionHead #correct {
+  color: green;
+}
+.questionContent .questionHead #incorrect {
+  color: #b84343;
+}
 .questionContent .questionHead input {
   background-color: #006699;
   color: white;
