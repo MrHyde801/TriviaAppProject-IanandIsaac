@@ -6,7 +6,6 @@ body {
 
 /* Dropdown Button */
 .dropbtn {
-<<<<<<< HEAD
   background-color: #DAF8FC;
   color: #006699;
   padding: 6px;
@@ -15,15 +14,6 @@ body {
   width: 100%;
   border-radius: 10px;
   font-weight: bold;
-=======
-  background-color: #508FCE;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  width: 100%;
-  border-radius: 10px;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -31,12 +21,8 @@ body {
   position: relative;
   display: inline-block;
   width: 100%;
-<<<<<<< HEAD
   margin-top: 2vh;
   margin-bottom: 10vh;
-=======
-  margin-top: 100px;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -75,16 +61,11 @@ body {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-<<<<<<< HEAD
   background-color: #9edfe7;
-=======
-  background-color: #508FCE;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 
 /* Start the game button */
 .startGame {
-<<<<<<< HEAD
   margin-top: 10vh;
   background-color: #DAF8FC;
   border-radius: none;
@@ -96,12 +77,6 @@ body {
 .startGame:hover {
   background-color: #9edfe7;
   color: #006699;
-=======
-  margin-top: 70px;
-  background-color: #508FCE;
-  border-radius: none;
-  float: right;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 
 body {
@@ -111,10 +86,7 @@ body {
 .header {
   position: sticky;
   top: 0;
-<<<<<<< HEAD
   z-index: 100;
-=======
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 
 .head {
@@ -124,10 +96,6 @@ body {
   padding: 5px 30px;
   background-color: #2D3339;
   color: white;
-<<<<<<< HEAD
-=======
-  margin-bottom: 30px;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 .head a {
   text-decoration: none;
@@ -138,12 +106,12 @@ body {
 .questionContent {
   background: white;
   padding: 0;
-<<<<<<< HEAD
   margin: 10px 0;
-=======
-  margin: 15px 0;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
   border-radius: 10px 10px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 .questionContent .questionHead {
   background: #DAF8FC;
@@ -155,15 +123,12 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-<<<<<<< HEAD
-=======
 .questionContent .questionHead #correct {
   color: green;
 }
 .questionContent .questionHead #incorrect {
   color: #b84343;
 }
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 .questionContent .questionHead input {
   background-color: #006699;
   color: white;
@@ -201,10 +166,6 @@ body {
   position: fixed;
   width: 102%;
   bottom: 0;
-<<<<<<< HEAD
-=======
-  margin-top: 20px;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 .footer .foot {
   display: flex;
@@ -229,7 +190,6 @@ body {
   border: 1px solid #2D3339;
 }
 
-<<<<<<< HEAD
 .statContent {
   background: white;
   padding: 0;
@@ -278,6 +238,4 @@ body {
   display: none;
 }
 
-=======
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 /*# sourceMappingURL=styles.css.map */

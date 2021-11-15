@@ -23,53 +23,20 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row" id="testing-questions">
-            <div class="questionContent">
-                <div class="questionHead">
-                    <h2>Question 1</h2>
-                    <input type="submit" value="submit answer" id="submitAnswer" onclick="submitAnswer()">
-                </div>
-                <div class="question">
-                    <p>Why is color is the sky?</p>
-                </div>
-                <div class="questionOptions">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col">
-                                <input type="radio" id="answer1" name="answers" value="first">
-                                <label for="answer1">Answer 1</label><br>
-                            </div>
-                            <div class="col">
-                                <input type="radio" id="answer2" name="answers" value="second">
-                                <label for="answer2">Answer 2</label><br>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <input type="radio" id="answer3" name="answers" value="third">
-                                <label for="answer3">Answer3</label>
-                            </div>
-                            <div class="col">
-                                <input type="radio" id="answer4" name="answers" value="fourth">
-                                <label for="answer4">Answer4</label>
-                            </div>
-                        </div>
-                      </form>
-                </div>
-            </div>
+    <div class="questionsContainer">
+        <div id="quizQuestions"></div>
         
     </div>
     <div class="row footer">
         <div class="foot">
             <p>&copy;Moss-Hyde</p>
             <div>
-                <input type=submit id="submitQuiz" value="Submit Quiz" onclick="submitQuiz()">
+                <input type=submit id="submitQuiz" value="Submit Quiz">
             </div>
         </div>
     </div>
     
 </body>
-<script src="./js/main.js"></script>
-<script src="./js/stats.js"></script>
-
-</html>
+<script src="./js/main.js"></script> 
+<script src="./js/question.js"></script>
+</html> 

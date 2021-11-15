@@ -30,19 +30,11 @@ body {
 .header {
     position: sticky;
     top: 0;
-<<<<<<< HEAD
     z-index:100;
 }
 
 .head {
     @include header-and-footer()
-=======
-}
-
-.head {
-    @include header-and-footer();
-    margin-bottom: 30px;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
 }
 
 
@@ -51,12 +43,12 @@ body {
 .questionContent {
     background: white;
     padding: 0;
-<<<<<<< HEAD
     margin: 10px 0;
-=======
-    margin: 15px 0;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
     border-radius: 10px 10px;
+    width:80%;
+    margin:0 auto;
+    margin-top:20px;
+    margin-bottom:40px;
     .questionHead {
         background: $lightcyan;
         width: 100%;
@@ -66,15 +58,12 @@ body {
         display:flex;
         justify-content: space-between;
         align-items: center;
-<<<<<<< HEAD
-=======
         #correct {
             color: green;
         }
         #incorrect {
             color: rgb(184, 67, 67);
         }
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
         input {
             background-color: $sapphireblue;
             color: white;
@@ -118,10 +107,6 @@ body {
     position: fixed;
     width: 102%;
     bottom:0;
-<<<<<<< HEAD
-=======
-    margin-top: 20px;
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
     .foot {
         @include header-and-footer;
         height: 40px;
@@ -136,7 +121,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
 
 // Styling for stat page
 
@@ -189,6 +173,3 @@ body {
 }
 
 
-=======
-//fix the positioning on the footer, it cuts off the bottom of the last question. We need space to there
->>>>>>> 2173938ba0ac8fdf235a83348281318b6188cc1e
