@@ -99,7 +99,6 @@ function quizInnerTemplate(quiz,index) {
             <div class="questionHead">
                 <h2>Question ${index += 1}</h2>
                 <div id="question${index}">
-                    <h3 id="incorrect">Incorrect!</h3>
                     <input type = "submit" value="submitAnswer" id="submit-Answer" form="form${index}">
                 </div>
             </div>
