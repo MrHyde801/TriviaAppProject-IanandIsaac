@@ -1,7 +1,9 @@
 window.onload = function() {
     let quizInfo = JSON.parse(localStorage.getItem('quizArray'))
-    testingQuestionPop(quizInfo)
+    questionPop(quizInfo)
+    console.log(quizInfo)
 };
+
 
 // lookup date object to calculate seconds into time
 
@@ -43,10 +45,6 @@ function startCount() {
     }
 }
 
-function submitQuiz() {
-
-}
-
 render()
 
 // let end;
@@ -63,17 +61,21 @@ render()
 
 
 
-// mainfunction to populate template
-function testingQuestionPop(element) {
 
-    let elementTest = document.getElementById("quizQuestions")
+
+// mainfunction to populate template
+function questionPop(element, index) {
+
+    let quizContainer = document.getElementById("quizQuestions")
     let quizTemplate =
-        `<div id="quiz-question">
+        `
             <div class="row g-4">
                 ${element.map(quizInnerTemplate).join('')}  
             </div>
-        </div>`
-        elementTest.innerHTML = quizTemplate;
+        `
+        quizContainer.innerHTML = quizTemplate;
+
+
         
 }
 
@@ -90,17 +92,17 @@ function quizInnerTemplate(quiz,index) {
         } 
     }
 
+    
 
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
     // console.log(answers)
 
-    return `
+    let innerTemp = `
         <div class="questionContent">
             <div class="questionHead">
                 <h2>Question ${index += 1}</h2>
-                <div id="question${index}">
-                    <input type = "submit" value="submitAnswer" id="submit-Answer" form="form${index}">
-                </div>
+                <h6 id="alert${index}"><h6>
+                <input type = "button" value="submitAnswer" id="submit-Answer" form="form${index}" onclick="answerTheQuestion${index}()">
             </div>
             <div class="question">
                 <p id="qText">${quiz.question}?</p>
@@ -109,20 +111,20 @@ function quizInnerTemplate(quiz,index) {
                 <form id="form${index}">
                     <div class="row g-3">
                         <div class="col answers">
-                            ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="answer" value="first">`: ''}
-                            <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label><br>
+                            ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
+                            <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
                         </div>
                         <div class="col answers">
-                            ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="answer" value="second">` : ''}
-                            <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label><br>
+                            ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="question${index}" value="second">` : ''}
+                            <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
                         </div>
                         <div class="w-100"></div>
                         <div class="col answers">
-                            ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}" name="answer" value="third">`: ''}
+                            ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}" name="question${index}" value="third">`: ''}
                             <label for="answer3">${(answers[2][1] !== undefined)? answers[2][1] : ''}</label>
                         </div>
                         <div class="col answers">
-                            ${(answers[3][1] !== undefined) ? `<input type="radio" id="${answers[3][0]}" name="answer" value="fourth">` : ''}
+                            ${(answers[3][1] !== undefined) ? `<input type="radio" id="${answers[3][0]}" name="question${index}" value="fourth">` : ''}
                             <label for="answer4">${(answers[3][1] !== undefined)? answers[3][1] : ''}</label>
                         </div>
                     </div>
@@ -130,5 +132,277 @@ function quizInnerTemplate(quiz,index) {
             </div>
         </div>
     `
+    
+    return innerTemp
+
+    
     //condense the 2 ternary operators into one eventually
 }
+
+let Scorecount = 0;
+
+function answerTheQuestion1() {
+    let formDoc = document.querySelector('#form1') 
+    let alert = document.getElementById('alert1')
+    let radio = document.getElementsByName('question1')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion2() {
+    let formDoc = document.querySelector('#form2') 
+    let alert = document.getElementById('alert2')
+    let radio = document.getElementsByName('question2')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion3() {
+    let formDoc = document.querySelector('#form3') 
+    let alert = document.getElementById('alert3')
+    let radio = document.getElementsByName('question3')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion4() {
+    let formDoc = document.querySelector('#form4') 
+    let alert = document.getElementById('alert4')
+    let radio = document.getElementsByName('question4')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion5() {
+    let formDoc = document.querySelector('#form5') 
+    let alert = document.getElementById('alert5')
+    let radio = document.getElementsByName('question5')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion6() {
+    let formDoc = document.querySelector('#form6') 
+    let alert = document.getElementById('alert6')
+    let radio = document.getElementsByName('question6')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion7() {
+    let formDoc = document.querySelector('#form7') 
+    let alert = document.getElementById('alert7')
+    let radio = document.getElementsByName('question7')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion8() {
+    let formDoc = document.querySelector('#form8') 
+    let alert = document.getElementById('alert8')
+    let radio = document.getElementsByName('question8')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion9() {
+    let formDoc = document.querySelector('#form9') 
+    let alert = document.getElementById('alert9')
+    let radio = document.getElementsByName('question9')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+function answerTheQuestion10() {
+    let formDoc = document.querySelector('#form10') 
+    let alert = document.getElementById('alert10')
+    let radio = document.getElementsByName('question10')
+    let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    if(selectedInput === null) {
+        alert.classList.add('alert');
+        alert.innerHTML = '!Please Select Answer!'
+    } else if (selectedInput.id === 'correct_answer') {
+        alert.classList.remove('alert');
+        alert.classList.add('correct');
+        alert.innerHTML = 'Correct!'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+        Scorecount += 1
+    } else if (selectedInput.id === 'incorrect_answers') {
+        alert.classList.remove('alert');
+        alert.classList.add('incorrect');
+        alert.innerHTML = 'Incorrect.'
+        for(let i = 0; i < radio.length; i++) {
+            radio[i].disabled = true
+        }
+    }
+}
+
+
+
+
+
+//things to do later -->> make it so if there are answers left unchecked it will not submit pages

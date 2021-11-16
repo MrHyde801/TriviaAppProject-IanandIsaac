@@ -110,11 +110,18 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.questionContent .questionHead #correct {
+.questionContent .questionHead .correct {
   color: green;
+  font-size: 22px;
 }
-.questionContent .questionHead #incorrect {
+.questionContent .questionHead .incorrect {
   color: #b84343;
+  font-size: 22px;
+}
+.questionContent .questionHead .alert {
+  color: #eb1d1d;
+  font-size: 22px;
+  margin-bottom: 8px;
 }
 .questionContent .questionHead input {
   background-color: #006699;

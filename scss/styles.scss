@@ -54,11 +54,18 @@ body {
         display:flex;
         justify-content: space-between;
         align-items: center;
-        #correct {
+        .correct {
             color: green;
+            font-size: 22px;
         }
-        #incorrect {
+        .incorrect {
             color: rgb(184, 67, 67);
+            font-size: 22px;
+        }
+        .alert {
+            color: rgb(235, 29, 29);
+            font-size: 22px;
+            margin-bottom: 8px;
         }
         input {
             background-color: $sapphireblue;
@@ -118,4 +125,6 @@ body {
     }
 }
 
+
 //fix the positioning on the footer, it cuts off the bottom of the last question. We need space to there
+//fix that when the window is minimized the text goes below the radio buttoon
