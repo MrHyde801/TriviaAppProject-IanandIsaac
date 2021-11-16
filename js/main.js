@@ -330,41 +330,6 @@ function HasBothAny(difficulty,type) {
 
 
 
-// Start of stats JS
-
-function toggleShow() {
-    let x = document.getElementById('selectContainer');
-    let y = document.getElementById('statsContainer');
-    let z = document.getElementById('statsPage');
-    if(x.style.display === 'none') {
-        y.style.display = 'none';
-        x.style.display = 'block';
-        z.innerHTML = 'Stats';
-    } else {
-        y.style.display = 'block';
-        x.style.display = 'none';
-        z.innerHTML = 'New Quiz';
-    }
-}
-
-let gamesPlayed = retrieve()
-document.getElementById('startGame').addEventListener('click', function() {
-    gamesPlayed++;
-    save();
-    let answer = retrieve();
-    console.log(answer);
-    document.getElementById('stat').innerHTML = 'You have played: ' + answer + ' games';
-});
-function save() {
-    localStorage.setItem('gamesPlayed', JSON.stringify(gamesPlayed));
-}
-function retrieve() {
-    return JSON.parse(localStorage.getItem('gamesPlayed'));
-}
-
-
-
-
 
 
 
