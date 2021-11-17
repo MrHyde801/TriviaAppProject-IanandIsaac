@@ -45,25 +45,10 @@ function startCount() {
     }
 }
 
-render()
-
-// let end;
-// let start
-
-// start = new Date()
-
-// for(var i = 0; i < 1000; i++) {
-//     Math.sqrt=(i)
-// }
-// end = new Date() 
-// console.log('timer took' + (end.getTime() - start.getTimezoneOffset()) + 'sec')
-//Use something like this to when the user clicks submit quiz it will take the time and 
+render() 
 
 
-
-////SAVING POINT IF THIS EXISTS
-
-// mainfunction to populate template
+//This creates the bootstrap carousel, which is then populated by quizInnerTemplate()
 function questionPop(element, index) {
 
     let quizContainer = document.getElementById("quizQuestions")
@@ -90,12 +75,13 @@ function questionPop(element, index) {
         
 }
 
+// mainfunction to populate template
 function quizInnerTemplate(quiz,index) {
     let answers = []
     let categories = []
     let difficulty = []
     let type = []
-    for(let [key,value] of Object.entries(quiz)) { //this gets the answers based on correct/incorrect key and populates it into an array
+    for(let [key,value] of Object.entries(quiz)) { //this gets the answers to each question based on correct/incorrect key and populates it into an array
         // console.log(`${key}, ${value}`)
         if(key === 'correct_answer') {
             answers.push(['correct_answer', value])
@@ -114,6 +100,7 @@ function quizInnerTemplate(quiz,index) {
     }
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
 
+    //uses all the info from the populated arrays to create each question
     let innerTemp = `
         <div class="${(index === 0) ? `carousel-item active"` : 'carousel-item'}">
             <div class="questionContent" id="${categories[0][1]}">
@@ -156,8 +143,6 @@ function quizInnerTemplate(quiz,index) {
     
     //condense the 2 ternary operators into one eventually
 }
-
-let alertTemplate = 'incorrect'
 
 let Scorecount = 0;
 
@@ -539,22 +524,24 @@ function answerTheQuestion10() {
     quizResults.push(answer10)
 }
 
+
+//If I have time try to condense the functions into 1 foreach. -
+// - was difficult to figure out because the template literal was messing with -
+// - the data types
+
 let categoryGroup = document.getElementsByClassName('questionContent')
-        
-let difficultyGroup = document.getElementsByClassName('questionOptions')
-    
+let difficultyGroup = document.getElementsByClassName('questionOptions') 
 let typeGroup = document.getElementsByClassName('type')   
+let quizResults = []
 
 
-
+//stores quiz information and then loads next page
 function submitQuiz() {
     localStorage.setItem('quizScore', Scorecount)
     localStorage.setItem('quizResults', JSON.stringify(quizResults))
     window.location.assign('stats.html')
 }
 
-let quizResults = []
-console.log(quizResults)
 
 function answerResults (number, category, type, difficulty, question, theirAnswer, correct) {
     this.number = number
