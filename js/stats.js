@@ -20,30 +20,17 @@ window.addEventListener('load', (evt) => {
     document.getElementById('stat').innerHTML = 'You have played ' + answer + ' games';
     let totalScore = JSON.parse(localStorage.getItem('Scorecount'));
     document.getElementById('questionsCorrect').innerHTML = 'You have gotten a total of ' + totalScore + ' questions correct!';
-    let percentage = (totalScore/(answer * 10)) *100;
+    let percentage = ((totalScore/(answer * 10)) *100).toFixed(0);
     document.getElementById('percentage').innerHTML = 'That is ' + percentage + '% of all questions you have answered';
+    let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
+    // Need to convert seconds back into minutes and seconds
+    let averageTime = totalSeconds/answer;
+    let minutes = Math.floor(averageTime / 60);
+    let seconds = (averageTime % 60).toFixed(0);
+    if(seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    document.getElementById('averageTime').innerHTML = 'On average it takes you ' + minutes + ':' + seconds + ' to finish a quiz';
 });
 
-
-// Need to do most played category stat
-    // Check how many times each category has been played
-    // Push the one that has the most
-        // Use the same format as the games played stat
-    // If it's a tie probably just pick the first one
-
-
-
-// Need to do stat for total time played
-    // Save the time of each quiz
-        // Get these numbers from the timer function in the questions.js
-        // minutesTime and timer I think then multiply minutesTime by 60 add timer(seconds) then convert back to minutes and seconds
-    // Add them all up and push to stat
-
-// Need to show three most recent quizzes on stats page
-    // Have the score on a mini makeup
-        // Three small squares or rectangles at the bottom of the stats page
-    // When the quiz is clicked it will enlarge and show full quiz
-        // Not quite sure how to do this yet
-    // Get all of the most recent quiz info and push the three most recent
-        // Get all of this from questions.js I think
 

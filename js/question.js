@@ -433,5 +433,12 @@ let scoreCount = retrievescore();
 
     
 
+let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
+function findTime() {
+    console.log(minutesTime + ':' + timer);
+    totalSeconds = minutesTime * 60 + timer;
+    localStorage.setItem('timeAverage', JSON.stringify(totalSeconds));
+    
+} 
 
 //things to do later -->> make it so if there are answers left unchecked it will not submit pages
