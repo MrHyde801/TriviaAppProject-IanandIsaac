@@ -2,7 +2,15 @@ window.onload = function() {
     let quizInfo = JSON.parse(localStorage.getItem('quizArray'))
     questionPop(quizInfo)
     console.log(quizInfo)
+    activeScoreCard(scoreContainer)
 };
+
+let Scorecount = 0;
+let Totalcount = 0;
+let scoreContainer = document.getElementById('scoreContainer')
+
+
+
 
 
 // lookup date object to calculate seconds into time
@@ -98,6 +106,8 @@ function quizInnerTemplate(quiz,index) {
         }
         
     }
+
+    // console.log(answers)
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
 
     //uses all the info from the populated arrays to create each question
@@ -105,7 +115,7 @@ function quizInnerTemplate(quiz,index) {
         <div class="${(index === 0) ? `carousel-item active"` : 'carousel-item'}">
             <div class="questionContent" id="${categories[0][1]}">
                 <div class="questionHead">
-                    <h2>Question ${index += 1}</h2>
+                    <h2>Question ${index += 1}/10</h2>
                     <h6 id="alert${index}"><h6>
                     <input type = "button" value="Submit Answer" id="submit-Answer" form="form${index}" onclick="answerTheQuestion${index}()">
                 </div>
@@ -142,9 +152,10 @@ function quizInnerTemplate(quiz,index) {
 
     
     //condense the 2 ternary operators into one eventually
+    //Make it so that the true false questions populate into 1st and 2nd answer
 }
 
-let Scorecount = 0;
+
 
 function answerTheQuestion1() {
     let category = document.getElementsByClassName('questionContent')[0].id
@@ -167,6 +178,8 @@ function answerTheQuestion1() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -177,6 +190,8 @@ function answerTheQuestion1() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer1 = new answerResults(1, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -205,6 +220,8 @@ function answerTheQuestion2() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -214,6 +231,8 @@ function answerTheQuestion2() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer2 = new answerResults(2, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -242,6 +261,8 @@ function answerTheQuestion3() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -251,6 +272,8 @@ function answerTheQuestion3() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer3 = new answerResults(3, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -279,6 +302,8 @@ function answerTheQuestion4() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -288,6 +313,8 @@ function answerTheQuestion4() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer4 = new answerResults(4, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -317,6 +344,8 @@ function answerTheQuestion5() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -326,6 +355,8 @@ function answerTheQuestion5() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer5 = new answerResults(5, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -355,6 +386,8 @@ function answerTheQuestion6() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -364,6 +397,8 @@ function answerTheQuestion6() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer6 = new answerResults(6, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -393,6 +428,8 @@ function answerTheQuestion7() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -402,6 +439,8 @@ function answerTheQuestion7() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer7 = new answerResults(7, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -431,6 +470,8 @@ function answerTheQuestion8() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -440,6 +481,8 @@ function answerTheQuestion8() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer8 = new answerResults(8, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -469,6 +512,8 @@ function answerTheQuestion9() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        Totalcount += 1
+        activeScoreCard(Scorecount)
         localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
@@ -478,6 +523,8 @@ function answerTheQuestion9() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer9 = new answerResults(9, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -507,7 +554,9 @@ function answerTheQuestion10() {
             radio[i].disabled = true
         }
         Scorecount += 1
-        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        Totalcount += 1
+        activeScoreCard(Scorecount)
+        localStorage.setItem('Scorecount', JSON.stringify(a));
         totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
@@ -516,6 +565,8 @@ function answerTheQuestion10() {
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
+        Totalcount += 1
+        activeScoreCard()
     }
     let answer10 = new answerResults(10, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
@@ -537,6 +588,11 @@ let quizResults = []
 
 //stores quiz information and then loads next page
 function submitQuiz() {
+    if(Totalcount !== 10) {
+        return alert(`
+        You haven't responded to all the questions
+        Complete all 10 questions before submitting.`)
+    }
     localStorage.setItem('quizScore', Scorecount)
     localStorage.setItem('quizResults', JSON.stringify(quizResults))
     window.location.assign('stats.html')
@@ -553,6 +609,25 @@ function answerResults (number, category, type, difficulty, question, theirAnswe
     this.correctAnswer = false
 }
 
+function activeScoreCard () {
+    let scoreCountTemp = 
+    `
+        <h3>${Totalcount} Question Answered</h3>
+        <h3>${Scorecount} Out of ${Totalcount} Correct</h3>
+    `
+    ;
+    scoreContainer.innerHTML = scoreCountTemp
+    if (Totalcount == 10) {
+        setTimeout(function() {
+            alert(
+            `
+            You scored ${Scorecount} out of ${Totalcount}
+            if you want to save your result, submit quiz
+            and/or try your luck with a new quiz!`);
+        }, 1000)
+    }
+}
+
 //things to do later -->> form validation when radioInputs are unchecked
 
 // JS for saving Scorecount to local storage
@@ -561,6 +636,7 @@ let scoreCount = retrievescore();
         scoreCount ++;
         savescore();
         console.log(retrievescore());
+        
         
     }
     function savescore() {
@@ -579,3 +655,4 @@ function findTime() {
     localStorage.setItem('timeAverage', JSON.stringify(totalSeconds));
     
 } 
+

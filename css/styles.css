@@ -86,8 +86,21 @@ body {
   color: #006699;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background: #778391;
+  height: 100%;
+}
+
+.container-fluid {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 .header {
@@ -113,6 +126,7 @@ body {
 
 #carouselControls a {
   width: 10%;
+  margin: 5px;
 }
 #carouselControls a:hover {
   border: 1px solid #bbc0c7;
@@ -126,7 +140,6 @@ body {
   margin: 15px auto;
   border-radius: 10px 10px;
   width: 80%;
-  margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 40px;
 }
@@ -168,6 +181,20 @@ body {
 }
 .questionContent .questionOptions {
   padding: 20px;
+}
+
+#scoreContainer {
+  background: #DAF8FC;
+  color: #006699;
+  padding: 10px 0;
+  margin: 15px auto;
+  border-radius: 10px 10px;
+  width: 60%;
+  display: flex;
+  gap: 10px;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .timer {

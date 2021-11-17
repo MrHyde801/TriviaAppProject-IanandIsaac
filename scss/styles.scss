@@ -22,8 +22,21 @@ $sapphireblue: #006699;
     }
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background: $slategray;
+    height: 100%;
+}
+
+.container-fluid {
+    height: 80%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
 
 //styling for header
@@ -37,10 +50,10 @@ body {
 .head {
     @include header-and-footer()
 }
-
 #carouselControls {
     a {
         width: 10%;
+        margin: 5px;
 
     }
     a:hover {
@@ -48,6 +61,7 @@ body {
         border-radius: 30px;
     }
 }
+
 
 //styling for questions
 .questionContent {
@@ -57,7 +71,6 @@ body {
     margin: 15px auto;
     border-radius: 10px 10px;
     width:80%;
-    margin:0 auto;
     margin-top:20px;
     margin-bottom:40px;
     .questionHead {
@@ -101,6 +114,20 @@ body {
     
     }
 }
+
+ #scoreContainer {
+    background: $lightcyan;
+    color: $sapphireblue;
+    padding: 10px 0;
+    margin: 15px auto;
+    border-radius: 10px 10px;
+    width:60%;
+    display: flex;
+    gap: 10px;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+ }
 
 // styles for timer
 .timer {
