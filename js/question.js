@@ -61,7 +61,7 @@ render()
 
 
 
-
+////SAVING POINT IF THIS EXISTS
 
 // mainfunction to populate template
 function questionPop(element, index) {
@@ -70,12 +70,23 @@ function questionPop(element, index) {
     let quizTemplate =
         `
             <div class="row g-4">
-                ${element.map(quizInnerTemplate).join('')}  
+                <div id="carouselControls" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner">
+                        ${element.map(quizInnerTemplate).join('')}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                    </a> 
+                </div>    
             </div>
         `
+
         quizContainer.innerHTML = quizTemplate;
-
-
         
 }
 
@@ -102,49 +113,51 @@ function quizInnerTemplate(quiz,index) {
         
     }
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
-    // console.log(answers)
 
     let innerTemp = `
-        <div class="questionContent" id="${categories[0][1]}">
-            <div class="questionHead">
-                <h2>Question ${index += 1}</h2>
-                <h6 id="alert${index}"><h6>
-                <input type = "button" value="submitAnswer" id="submit-Answer" form="form${index}" onclick="answerTheQuestion${index}()">
+        <div class="${(index === 0) ? `carousel-item active"` : 'carousel-item'}">
+            <div class="questionContent" id="${categories[0][1]}">
+                <div class="questionHead">
+                    <h2>Question ${index += 1}</h2>
+                    <h6 id="alert${index}"><h6>
+                    <input type = "button" value="Submit Answer" id="submit-Answer" form="form${index}" onclick="answerTheQuestion${index}()">
+                </div>
+                <div class="question">
+                    <p id="qText">${quiz.question}?</p>
+                </div>
+                <div class="questionOptions" id="${difficulty[0][1]}">
+                    <form id="form${index}">
+                        <div class="row g-3 type" id="${type[0][1]}">
+                            <div class="col answers">
+                                ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
+                                <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                            </div>
+                            <div class="col answers">
+                                ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="question${index}" value="second">` : ''}
+                                <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col answers">
+                                ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}" name="question${index}" value="third">`: ''}
+                                <label for="answer3">${(answers[2][1] !== undefined)? answers[2][1] : ''}</label>
+                            </div>
+                            <div class="col answers">
+                                ${(answers[3][1] !== undefined) ? `<input type="radio" id="${answers[3][0]}" name="question${index}" value="fourth">` : ''}
+                                <label for="answer4">${(answers[3][1] !== undefined)? answers[3][1] : ''}</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="question">
-                <p id="qText">${quiz.question}?</p>
-            </div>
-            <div class="questionOptions" id="${difficulty[0][1]}">
-                <form id="form${index}">
-                    <div class="row g-3 type" id="${type[0][1]}">
-                        <div class="col answers">
-                            ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
-                            <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
-                        </div>
-                        <div class="col answers">
-                            ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="question${index}" value="second">` : ''}
-                            <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="col answers">
-                            ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}" name="question${index}" value="third">`: ''}
-                            <label for="answer3">${(answers[2][1] !== undefined)? answers[2][1] : ''}</label>
-                        </div>
-                        <div class="col answers">
-                            ${(answers[3][1] !== undefined) ? `<input type="radio" id="${answers[3][0]}" name="question${index}" value="fourth">` : ''}
-                            <label for="answer4">${(answers[3][1] !== undefined)? answers[3][1] : ''}</label>
-                        </div>
-                    </div>
-                  </form>
-            </div>
-        </div>
+        </div>    
     `
-    
     return innerTemp
 
     
     //condense the 2 ternary operators into one eventually
 }
+
+let alertTemplate = 'incorrect'
 
 let Scorecount = 0;
 
@@ -156,6 +169,8 @@ function answerTheQuestion1() {
     let alert = document.getElementById('alert1')
     let radio = document.getElementsByName('question1')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    console.log(selectedInput.nextElementSibling)
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -168,6 +183,7 @@ function answerTheQuestion1() {
         }
         Scorecount += 1
     } else if (selectedInput.id === 'incorrect_answers') {
+        theirAnswer = theirAnswer + ' incorrect'
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
@@ -175,7 +191,7 @@ function answerTheQuestion1() {
             radio[i].disabled = true
         }
     }
-    let answer1 = new answerResults(1, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer1 = new answerResults(1, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer1.correctAnswer = true
     }
@@ -190,6 +206,7 @@ function answerTheQuestion2() {
     let alert = document.getElementById('alert2')
     let radio = document.getElementsByName('question2')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -209,7 +226,7 @@ function answerTheQuestion2() {
             radio[i].disabled = true
         }
     }
-    let answer2 = new answerResults(2, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer2 = new answerResults(2, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer2.correctAnswer = true
     }
@@ -224,6 +241,7 @@ function answerTheQuestion3() {
     let alert = document.getElementById('alert3')
     let radio = document.getElementsByName('question3')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -243,7 +261,7 @@ function answerTheQuestion3() {
             radio[i].disabled = true
         }
     }
-    let answer3 = new answerResults(3, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer3 = new answerResults(3, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer3.correctAnswer = true
     }
@@ -258,6 +276,7 @@ function answerTheQuestion4() {
     let alert = document.getElementById('alert4')
     let radio = document.getElementsByName('question4')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -277,7 +296,7 @@ function answerTheQuestion4() {
             radio[i].disabled = true
         }
     }
-    let answer4 = new answerResults(4, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer4 = new answerResults(4, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer4.correctAnswer = true
     }
@@ -293,6 +312,7 @@ function answerTheQuestion5() {
     let alert = document.getElementById('alert5')
     let radio = document.getElementsByName('question5')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -312,7 +332,7 @@ function answerTheQuestion5() {
             radio[i].disabled = true
         }
     }
-    let answer5 = new answerResults(5, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer5 = new answerResults(5, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer5.correctAnswer = true
     }
@@ -328,6 +348,7 @@ function answerTheQuestion6() {
     let alert = document.getElementById('alert6')
     let radio = document.getElementsByName('question6')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -347,7 +368,7 @@ function answerTheQuestion6() {
             radio[i].disabled = true
         }
     }
-    let answer6 = new answerResults(6, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer6 = new answerResults(6, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer6.correctAnswer = true
     }
@@ -363,6 +384,7 @@ function answerTheQuestion7() {
     let alert = document.getElementById('alert7')
     let radio = document.getElementsByName('question7')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -382,7 +404,7 @@ function answerTheQuestion7() {
             radio[i].disabled = true
         }
     }
-    let answer7 = new answerResults(7, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer7 = new answerResults(7, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer7.correctAnswer = true
     }
@@ -398,6 +420,7 @@ function answerTheQuestion8() {
     let alert = document.getElementById('alert8')
     let radio = document.getElementsByName('question8')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -417,7 +440,7 @@ function answerTheQuestion8() {
             radio[i].disabled = true
         }
     }
-    let answer8 = new answerResults(8, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer8 = new answerResults(8, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer8.correctAnswer = true
     }
@@ -433,6 +456,7 @@ function answerTheQuestion9() {
     let alert = document.getElementById('alert9')
     let radio = document.getElementsByName('question9')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -452,7 +476,7 @@ function answerTheQuestion9() {
             radio[i].disabled = true
         }
     }
-    let answer9 = new answerResults(9, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer9 = new answerResults(9, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer9.correctAnswer = true
     }
@@ -468,6 +492,7 @@ function answerTheQuestion10() {
     let alert = document.getElementById('alert10') 
     let radio = document.getElementsByName('question10') 
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
+    let theirAnswer = selectedInput.nextElementSibling.innerHTML
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -487,7 +512,7 @@ function answerTheQuestion10() {
             radio[i].disabled = true
         }
     }
-    let answer10 = new answerResults(10, category, formDoc.firstElementChild.id, difficulty, question, selectedInput.nextElementSibling.innerHTML, correctAnswer = false )
+    let answer10 = new answerResults(10, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
     if(selectedInput.id === 'correct_answer') {
         answer10.correctAnswer = true
     }
@@ -511,6 +536,7 @@ function submitQuiz() {
 }
 
 let quizResults = []
+console.log(quizResults)
 
 function answerResults (number, category, type, difficulty, question, theirAnswer, correct) {
     this.number = number

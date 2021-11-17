@@ -30,6 +30,7 @@ body {
 .header {
     position: sticky;
     top: 0;
+    width: 100%
 }
 
 .head {
@@ -37,13 +38,23 @@ body {
     margin-bottom: 30px;
 }
 
+#carouselControls {
+    a {
+        width: 10%;
 
+    }
+    a:hover {
+        border: 1px solid rgb(187,192,199);
+        border-radius: 30px;
+    }
+}
 
 //styling for questions
 .questionContent {
     background: white;
+    width: 80%;
     padding: 0;
-    margin: 15px 0;
+    margin: 15px auto;
     border-radius: 10px 10px;
     .questionHead {
         background: $lightcyan;
@@ -108,8 +119,9 @@ body {
 // Styling for footer
 .footer {
     position: fixed;
-    width: 102%;
+    width: 100%;
     bottom:0;
+    left: 0;
     margin-top: 20px;
     .foot {
         @include header-and-footer;
