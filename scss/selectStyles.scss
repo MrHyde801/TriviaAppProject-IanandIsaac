@@ -2,6 +2,7 @@
 $gunmetal: #2D3339;
 $slategray: #778391;
 $lightcyan: #DAF8FC;
+$darkercyan: #9edfe7;
 $tuftsblue: #508FCE;
 $sapphireblue: #006699;
 
@@ -12,15 +13,20 @@ body {
     
 }
 
+.selectContainer {
+  min-height:400px;
+}
 /* Dropdown Button */
 .dropbtn {
-    background-color: $tuftsblue; // Colors will change
-    color: white;
-    padding: 16px;
-    font-size: 16px;
+    background-color: $lightcyan; // Colors will change
+    color: $sapphireblue;
+    padding: 6px;
+    font-size: 28px;
     border: none;
-    width:100%;
+    width:90%;
     border-radius:10px;
+    font-weight:bold;
+    transform:translateX(5%);
   }
   
   /* The container <div> - needed to position the dropdown content */
@@ -28,8 +34,9 @@ body {
     position: relative;
     display: inline-block;
     width:100%;
-    margin-top:100px;
-  
+    margin-top:2vh;
+    margin-bottom:10vh;
+
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -45,6 +52,7 @@ body {
     max-height:300px;
     overflow:auto;
     min-width:300px;
+    transform:translateX(6.5%);
   }
   
   /* Links inside the dropdown */
@@ -67,12 +75,24 @@ body {
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: $tuftsblue;} // Colors will change
+  .dropdown:hover .dropbtn {
+    background-color: $darkercyan;
+  } // Colors will change
 
   /* Start the game button */
   .startGame {
-    margin-top:70px;
-    background-color: $tuftsblue;
+    margin-top:5vh;
+    margin-right:6%;
+    background-color: $lightcyan;
     border-radius: none;
     float:right;
+    color: $sapphireblue;
+    font-weight:bold;
   }
+
+  .startGame:hover {
+    background-color:$darkercyan;
+    color:$sapphireblue;
+  }
+
+  

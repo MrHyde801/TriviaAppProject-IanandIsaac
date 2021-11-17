@@ -90,8 +90,8 @@ document.getElementById('mythology').addEventListener('click', function() {
     category = 20;
     console.log(category);
 });
-document.getElementById('mythology').addEventListener('click', function() {
-    document.getElementById('categories').innerHTML = 'Category - Mythology';
+document.getElementById('sports').addEventListener('click', function() {
+    document.getElementById('categories').innerHTML = 'Category - Sports';
     category = 21;
     console.log(category);
 });
@@ -324,10 +324,5 @@ function HasBothAny(difficulty,type) {
         (response) => response.json()
     );
 }
-
-
-
-
-
 
 

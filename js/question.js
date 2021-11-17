@@ -182,6 +182,8 @@ function answerTheQuestion1() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         theirAnswer = theirAnswer + ' incorrect'
         alert.classList.remove('alert');
@@ -218,6 +220,8 @@ function answerTheQuestion2() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -253,6 +257,8 @@ function answerTheQuestion3() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -288,6 +294,8 @@ function answerTheQuestion4() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -324,6 +332,8 @@ function answerTheQuestion5() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -360,6 +370,8 @@ function answerTheQuestion6() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -396,6 +408,8 @@ function answerTheQuestion7() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -432,6 +446,8 @@ function answerTheQuestion8() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -468,6 +484,8 @@ function answerTheQuestion9() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -504,6 +522,8 @@ function answerTheQuestion10() {
             radio[i].disabled = true
         }
         Scorecount += 1
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
+        totalScore();
     } else if (selectedInput.id === 'incorrect_answers') {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
@@ -519,8 +539,6 @@ function answerTheQuestion10() {
     quizResults.push(answer10)
 }
 
-
-        
 let categoryGroup = document.getElementsByClassName('questionContent')
         
 let difficultyGroup = document.getElementsByClassName('questionOptions')
@@ -549,3 +567,28 @@ function answerResults (number, category, type, difficulty, question, theirAnswe
 }
 
 //things to do later -->> form validation when radioInputs are unchecked
+
+// JS for saving Scorecount to local storage
+let scoreCount = retrievescore();
+    function totalScore() {
+        scoreCount ++;
+        savescore();
+        console.log(retrievescore());
+        
+    }
+    function savescore() {
+        localStorage.setItem('Scorecount', JSON.stringify(scoreCount));
+    }
+    function retrievescore() {
+        return JSON.parse(localStorage.getItem('Scorecount'));
+    }
+
+    
+
+let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
+function findTime() {
+    console.log(minutesTime + ':' + timer);
+    totalSeconds = minutesTime * 60 + timer;
+    localStorage.setItem('timeAverage', JSON.stringify(totalSeconds));
+    
+} 

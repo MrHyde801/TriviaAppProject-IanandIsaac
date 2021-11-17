@@ -31,11 +31,11 @@ body {
     position: sticky;
     top: 0;
     width: 100%
+    z-index:100;
 }
 
 .head {
-    @include header-and-footer();
-    margin-bottom: 30px;
+    @include header-and-footer()
 }
 
 #carouselControls {
@@ -56,6 +56,10 @@ body {
     padding: 0;
     margin: 15px auto;
     border-radius: 10px 10px;
+    width:80%;
+    margin:0 auto;
+    margin-top:20px;
+    margin-bottom:40px;
     .questionHead {
         background: $lightcyan;
         width: 100%;
@@ -136,6 +140,48 @@ body {
         }
     }
 }
+
+
+// Styling for stat page
+
+.statContent {
+    background:white;
+    padding:0;
+    margin: 10px 0;
+    border-radius: 10px 10px;
+    margin-bottom:40px;
+    width:90%;
+    transform:translateX(5%);
+    .statHead {
+        background: $lightcyan;
+        width: 100%;
+        border-radius:inherit;
+        padding: 8px 14px 6px 14px;
+        color: $sapphireblue;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .statInfo {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100px;
+        flex-direction:column;
+        padding:5px;
+        p {
+            font-size:20px;
+            margin:0;
+        }
+    }
+}
+
+.testButton {
+    width:100px;
+    height:50px;
+}
+
+
 
 
 //fix the positioning on the footer, it cuts off the bottom of the last question. We need space to there
