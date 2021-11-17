@@ -18,7 +18,12 @@ window.addEventListener('load', (evt) => {
     save();
     let answer = retrieve();
     document.getElementById('stat').innerHTML = 'You have played ' + answer + ' games';
+    let totalScore = JSON.parse(localStorage.getItem('Scorecount'));
+    document.getElementById('questionsCorrect').innerHTML = 'You have gotten a total of ' + totalScore + ' questions correct!';
+    let percentage = (totalScore/(answer * 10)) *100;
+    document.getElementById('percentage').innerHTML = 'That is ' + percentage + '% of all questions you have answered';
 });
+
 
 // Need to do most played category stat
     // Check how many times each category has been played
@@ -26,13 +31,7 @@ window.addEventListener('load', (evt) => {
         // Use the same format as the games played stat
     // If it's a tie probably just pick the first one
 
-// Need to do total questions right and percentage
-    // Save how many total questions user has gotten correct
-        // Saved in questions.js as Scorecount
-    // push that as the base number
-        // Use the same format as the games played stat but push both total questions correct and percentage at the same time
-    // for percentage take totalRight/(totalQuizzes * 10)
-    // This is just dividing quesitons correct of total questions to give percentage
+
 
 // Need to do stat for total time played
     // Save the time of each quiz
