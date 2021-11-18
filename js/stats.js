@@ -17,13 +17,17 @@ window.addEventListener('load', (evt) => {
     console.log('page is fully loaded');
     save();
     let answer = retrieve();
+    // games played stat
     document.getElementById('stat').innerHTML = 'You have played ' + answer + ' games';
     let totalScore = JSON.parse(localStorage.getItem('Scorecount'));
+    // questions correct stat
     document.getElementById('questionsCorrect').innerHTML = 'You have gotten a total of ' + totalScore + ' questions correct!';
     let percentage = ((totalScore/(answer * 10)) *100).toFixed(0);
+    // percentage stat
     document.getElementById('percentage').innerHTML = 'That is ' + percentage + '% of all questions you have answered';
+    // average time per quiz stat
     let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
-    // Need to convert seconds back into minutes and seconds
+    // convert seconds back into minutes and seconds
     let averageTime = totalSeconds/answer;
     let minutes = Math.floor(averageTime / 60);
     let seconds = (averageTime % 60).toFixed(0);
