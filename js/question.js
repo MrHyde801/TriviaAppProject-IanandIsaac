@@ -624,11 +624,9 @@ function activeScoreCard () {
             You scored ${Scorecount} out of ${Totalcount}
             if you want to save your result, submit quiz
             and/or try your luck with a new quiz!`);
-        }, 1000)
+        }, 800)
     }
 }
-
-//things to do later -->> form validation when radioInputs are unchecked
 
 // JS for saving Scorecount to local storage
 let scoreCount = retrievescore();
