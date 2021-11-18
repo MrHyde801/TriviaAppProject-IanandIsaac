@@ -111,7 +111,12 @@ body {
     }
     .questionOptions {
         padding: 20px;
-    
+        .col.answers {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
     }
 }
 
@@ -208,8 +213,4 @@ body {
     height:50px;
 }
 
-
-
-
-//fix the positioning on the footer, it cuts off the bottom of the last question. We need space to there
 //fix that when the window is minimized the text goes below the radio buttoon

@@ -182,6 +182,12 @@ body {
 .questionContent .questionOptions {
   padding: 20px;
 }
+.questionContent .questionOptions .col.answers {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
 
 #scoreContainer {
   background: #DAF8FC;
