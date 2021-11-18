@@ -86,4 +86,59 @@ body {
   color: #006699;
 }
 
+/* Dropdown Button */
+.dropbtnQuiz {
+  background-color: #DAF8FC;
+  color: #006699;
+  padding: 6px;
+  font-size: 28px;
+  border: none;
+  width: 90%;
+  border-radius: 10px;
+  font-weight: bold;
+  transform: translateX(5%);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdownQuiz {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-top: 2vh;
+  margin-bottom: 5vh;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-contentQuiz {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 50%;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow: auto;
+  min-width: 300px;
+  transform: translateX(6.5%);
+}
+
+/* Links inside the dropdown */
+.dropdown-contentQuiz a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Show the dropdown menu on hover */
+.dropdownQuiz:hover .dropdown-contentQuiz {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdownQuiz:hover .dropbtnQuiz {
+  background-color: #9edfe7;
+}
+
 /*# sourceMappingURL=selectStyles.css.map */
