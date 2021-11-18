@@ -106,12 +106,18 @@ function quizInnerTemplate(quiz,index) {
         }
         
     }
-
+    answers = answers.filter(function(x) {
+        if(x[1] !== undefined) {
+            return x
+    }});
+    
+    // console.log(type)
     // console.log(answers)
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
 
-    //uses all the info from the populated arrays to create each question
-    let innerTemp = `
+    //uses all the info from the populated arrays to create each question based on question type(multiple or boolean)
+    if(type[0][1] === 'multiple') {
+        let multiTemp = `
         <div class="${(index === 0) ? `carousel-item active"` : 'carousel-item'}">
             <div class="questionContent" id="${categories[0][1]}">
                 <div class="questionHead">
@@ -148,14 +154,40 @@ function quizInnerTemplate(quiz,index) {
             </div>
         </div>    
     `
-    return innerTemp
-
-    
-    //condense the 2 ternary operators into one eventually
-    //Make it so that the true false questions populate into 1st and 2nd answer
+    return multiTemp
+    } else 
+    {
+        let booleanTemp = `
+        <div class="${(index === 0) ? `carousel-item active"` : 'carousel-item'}">
+            <div class="questionContent" id="${categories[0][1]}">
+                <div class="questionHead">
+                    <h2>Question ${index += 1}/10</h2>
+                    <h6 id="alert${index}"><h6>
+                    <input type = "button" value="Submit Answer" id="submit-Answer" form="form${index}" onclick="answerTheQuestion${index}()">
+                </div>
+                <div class="question">
+                    <p id="qText">${quiz.question}?</p>
+                </div>
+                <div class="questionOptions" id="${difficulty[0][1]}">
+                    <form id="form${index}">
+                        <div class="row g-3 type" id="${type[0][1]}">
+                            <div class="col answers">
+                                ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
+                                <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                            </div>
+                            <div class="col answers">
+                                ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="question${index}" value="second">` : ''}
+                                <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+        `
+        return booleanTemp
+    }
 }
-
-
 
 function answerTheQuestion1() {
     let category = document.getElementsByClassName('questionContent')[0].id
