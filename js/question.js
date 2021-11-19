@@ -126,16 +126,16 @@ function quizInnerTemplate(quiz,index) {
                     <form id="form${index}">
                         <div class="row g-3 type" id="${type[0][1]}">
                             <div class="col answers">
-                                ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
-                                <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                                ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}"  name="question${index}" value="first">`: ''}
+                                <label for="answer1 ${answers[0][0]}">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
                             </div>
                             <div class="col answers">
-                                ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="question${index}" value="second">` : ''}
+                                ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}"  name="question${index}" value="second">` : ''}
                                 <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
                             </div>
                             <div class="w-100"></div>
                             <div class="col answers">
-                                ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}" name="question${index}" value="third">`: ''}
+                                ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}"  name="question${index}" value="third">`: ''}
                                 <label for="answer3">${(answers[2][1] !== undefined)? answers[2][1] : ''}</label>
                             </div>
                             <div class="col answers">
@@ -587,6 +587,7 @@ let quizResults = []
 
 
 //stores quiz information and then loads next page
+let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
 function submitQuiz() {
     if(Totalcount !== 10) {
         return alert(`
@@ -595,7 +596,14 @@ function submitQuiz() {
     }
     localStorage.setItem('quizScore', Scorecount)
     localStorage.setItem('quizResults', JSON.stringify(quizResults))
-    window.location.assign('stats.html')
+    
+
+    console.log(minutesTime + ':' + timer);
+    console.log('this part is working');
+    totalSeconds += minutesTime * 60 + timer;
+    localStorage.setItem('timeAverage', JSON.stringify(totalSeconds));
+
+    window.location.assign('stats.html');
 }
 
 
@@ -644,11 +652,7 @@ let scoreCount = retrievescore();
         return JSON.parse(localStorage.getItem('Scorecount'));
     }
 
-let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
-function findTime() {
-    console.log(minutesTime + ':' + timer);
-    totalSeconds = minutesTime * 60 + timer;
-    localStorage.setItem('timeAverage', JSON.stringify(totalSeconds));
-} 
+
+
 
 
