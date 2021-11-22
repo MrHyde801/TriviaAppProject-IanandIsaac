@@ -133,7 +133,7 @@ function quizInnerTemplate(quiz,index) {
                         <div class="row g-3 type" id="${type[0][1]}">
                             <div class="col answers">
                                 ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
-                                <label for="answer1" for='${answers[0][0]}'>${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                                <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
                             </div>
                             <div class="col answers">
                                 ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}"  name="question${index}" value="second">` : ''}
