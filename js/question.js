@@ -1,9 +1,12 @@
 window.onload = function() {
     let quizInfo = JSON.parse(localStorage.getItem('quizArray'))
     questionPop(quizInfo)
-    console.log(quizInfo)
     activeScoreCard(scoreContainer)
-};
+    // console.log(quizInfo)
+
+}; 
+//questionPop() populates the questions based on the users selection from the first page, 
+//and acticeScoreCard() is the function for the live counters on this page as the user answers question
 
 let Scorecount = 0;
 let Totalcount = 0;
@@ -13,7 +16,7 @@ let scoreContainer = document.getElementById('scoreContainer')
 
 
 
-// lookup date object to calculate seconds into time
+// this next section is the functionality of the timer in the upper righthand corner
 
 let timer = "0" + 0
 let minutesTime = "0" + 0
@@ -56,7 +59,7 @@ function startCount() {
 render() 
 
 
-//This creates the bootstrap carousel, which is then populated by quizInnerTemplate()
+//This function has a template literal which creates the bootstrap carousel, which is then populated by quizInnerTemplate()
 function questionPop(element, index) {
 
     let quizContainer = document.getElementById("quizQuestions")
@@ -79,11 +82,13 @@ function questionPop(element, index) {
             </div>
         `
 
-        quizContainer.innerHTML = quizTemplate;
+        quizContainer.innerHTML = quizTemplate; 
+        
         
 }
 
-// mainfunction to populate template
+// mainfunction to populate template, the biggest learning curves for me was iterating through the JSON and adding it to the template literal, using a template literal
+//was more of a headache then I originally thought it would. - Ian
 function quizInnerTemplate(quiz,index) {
     let answers = []
     let categories = []
@@ -110,7 +115,11 @@ function quizInnerTemplate(quiz,index) {
         if(x[1] !== undefined) {
             return x
     }});
-    
+    //After we originally populated the questions we had a big issue
+    //If the question was true/false it would still loaded the empty divs which looked wierd. So we added this filter method to delete the undefined divs.
+    //Then made another template literal and added an if statement based on the type of question. It loads the variable multipTemp for multiple choice, and booleanTemp for true/false
+
+
     // console.log(type)
     // console.log(answers)
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
@@ -154,6 +163,7 @@ function quizInnerTemplate(quiz,index) {
             </div>
         </div>    
     `
+
     return multiTemp
     } else 
     {
@@ -189,6 +199,8 @@ function quizInnerTemplate(quiz,index) {
     }
 }
 
+
+//the functionality for answering the questions
 function answerTheQuestion1() {
     let category = document.getElementsByClassName('questionContent')[0].id
     let difficulty = document.getElementsByClassName('questionOptions')[0].id
@@ -650,7 +662,8 @@ function submitQuiz() {
 }
 
 
-function answerResults (number, category, type, difficulty, question, theirAnswer, correct) {
+//generator function to store the answer info
+function answerResults (number, category, type, difficulty, question, theirAnswer, correctAnswer) {
     this.number = number
     this.category = category
     this.type = type
@@ -660,6 +673,8 @@ function answerResults (number, category, type, difficulty, question, theirAnswe
     this.correctAnswer = false
 }
 
+
+//JS for the active counter when the user answers the question
 function activeScoreCard () {
     let scoreCountTemp = 
     `
