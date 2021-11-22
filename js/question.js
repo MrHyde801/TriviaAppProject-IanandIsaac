@@ -132,8 +132,8 @@ function quizInnerTemplate(quiz,index) {
                     <form id="form${index}">
                         <div class="row g-3 type" id="${type[0][1]}">
                             <div class="col answers">
-                                ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}"  name="question${index}" value="first">`: ''}
-                                <label for="answer1 ${answers[0][0]}">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                                ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
+                                <label for="answer1" for='${answers[0][0]}'>${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
                             </div>
                             <div class="col answers">
                                 ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}"  name="question${index}" value="second">` : ''}
@@ -634,6 +634,17 @@ function submitQuiz() {
     console.log('this part is working');
     totalSeconds += minutesTime * 60 + timer;
     localStorage.setItem('timeAverage', JSON.stringify(totalSeconds));
+
+    let gamesPlayed = retrieve();
+    gamesPlayed++
+    save();
+    console.log(retrieve());
+    function save() {
+        localStorage.setItem('playedGames', JSON.stringify(gamesPlayed));
+    }
+    function retrieve() {
+        return JSON.parse(localStorage.getItem('playedGames'));
+    }
 
     window.location.assign('stats.html');
 }

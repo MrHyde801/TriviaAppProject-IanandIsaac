@@ -143,11 +143,13 @@ body {
 
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
   background: #778391;
   height: 100%;
+  width: 100%;
 }
 
 .container-fluid {
@@ -163,6 +165,8 @@ body {
   top: 0;
   width: 100%;
   z-index: 100;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .head {
@@ -280,6 +284,8 @@ body {
   bottom: 0;
   left: 0;
   margin-top: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 .footer .foot {
   display: flex;
@@ -305,7 +311,7 @@ body {
 }
 
 .statsContainer {
-  min-height: 2000px;
+  min-height: 1900px;
 }
 
 .statContent {
@@ -371,20 +377,6 @@ body {
   min-height: 100px;
   flex-direction: column;
   padding: 5px;
-}
-.recentGame .gameContainer p {
-  font-size: 20px;
-  margin: 0;
-  max-width: 500px;
-  min-width: 500px;
-}
-
-#statCorrectOne {
-  margin-bottom: 30px;
-}
-
-.enlargen {
-  padding: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */
