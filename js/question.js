@@ -6,15 +6,11 @@ window.onload = function() {
 
 }; 
 //questionPop() populates the questions based on the users selection from the first page, 
-//and acticeScoreCard() is the function for the live counters on this page as the user answers question
+//ActiveScoreCard() is the function for the live counters on this page as the user answers question
 
 let Scorecount = 0;
 let Totalcount = 0;
 let scoreContainer = document.getElementById('scoreContainer')
-
-
-
-
 
 // this next section is the functionality of the timer in the upper righthand corner
 
@@ -59,7 +55,7 @@ function startCount() {
 render() 
 
 
-//This function has a template literal which creates the bootstrap carousel, which is then populated by quizInnerTemplate()
+//This function has a template literal which creates the bootstrap carousel
 function questionPop(element, index) {
 
     let quizContainer = document.getElementById("quizQuestions")
@@ -87,7 +83,7 @@ function questionPop(element, index) {
         
 }
 
-// mainfunction to populate template, the biggest learning curves for me was iterating through the JSON and adding it to the template literal, using a template literal
+//mainfunction to populate template, the biggest learning curves was iterating through the JSON and adding it to the template literal, using a template literal
 //was more of a headache then I originally thought it would. - Ian
 function quizInnerTemplate(quiz,index) {
     let answers = []
@@ -117,14 +113,14 @@ function quizInnerTemplate(quiz,index) {
     }});
     //After we originally populated the questions we had a big issue
     //If the question was true/false it would still loaded the empty divs which looked wierd. So we added this filter method to delete the undefined divs.
-    //Then made another template literal and added an if statement based on the type of question. It loads the variable multipTemp for multiple choice, and booleanTemp for true/false
+    //Then made another template literal and added an if statement based on the type of question.
 
 
     // console.log(type)
     // console.log(answers)
     answers.sort(function(a, b){return 0.5 - Math.random()}) //randomizes the order of the answers
 
-    //uses all the info from the populated arrays to create each question based on question type(multiple or boolean)
+    //template literals for question type
     if(type[0][1] === 'multiple') {
         let multiTemp = `
         <div class="${(index === 0) ? `carousel-item active"` : 'carousel-item'}">
@@ -142,20 +138,20 @@ function quizInnerTemplate(quiz,index) {
                         <div class="row g-3 type" id="${type[0][1]}">
                             <div class="col answers">
                                 ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
-                                <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                                <label for="answer1"><span>${(answers[0][1] !== undefined)? answers[0][1] : ''}</span></label>
                             </div>
                             <div class="col answers">
                                 ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}"  name="question${index}" value="second">` : ''}
-                                <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
+                                <label for="answer2"><span>${(answers[1][1] !== undefined)? answers[1][1] : ''}</span></label>
                             </div>
                             <div class="w-100"></div>
                             <div class="col answers">
                                 ${(answers[2][1] !== undefined) ? `<input type="radio" id="${answers[2][0]}"  name="question${index}" value="third">`: ''}
-                                <label for="answer3">${(answers[2][1] !== undefined)? answers[2][1] : ''}</label>
+                                <label for="answer3"><span>${(answers[2][1] !== undefined)? answers[2][1] : ''}</span></label>
                             </div>
                             <div class="col answers">
                                 ${(answers[3][1] !== undefined) ? `<input type="radio" id="${answers[3][0]}" name="question${index}" value="fourth">` : ''}
-                                <label for="answer4">${(answers[3][1] !== undefined)? answers[3][1] : ''}</label>
+                                <label for="answer4"><span>${(answers[3][1] !== undefined)? answers[3][1] : ''}</span></label>
                             </div>
                         </div>
                     </form>
@@ -183,11 +179,11 @@ function quizInnerTemplate(quiz,index) {
                         <div class="row g-3 type" id="${type[0][1]}">
                             <div class="col answers">
                                 ${(answers[0][1] !== undefined) ? `<input type="radio" id="${answers[0][0]}" name="question${index}" value="first">`: ''}
-                                <label for="answer1">${(answers[0][1] !== undefined)? answers[0][1] : ''}</label>
+                                <label for="answer1"><span>${(answers[0][1] !== undefined)? answers[0][1] : ''}</span></label>
                             </div>
                             <div class="col answers">
                                 ${(answers[1][1] !== undefined) ? `<input type="radio" id="${answers[1][0]}" name="question${index}" value="second">` : ''}
-                                <label for="answer2">${(answers[1][1] !== undefined)? answers[1][1] : ''}</label>
+                                <label for="answer2"><span>${(answers[1][1] !== undefined)? answers[1][1] : ''}</span></label>
                             </div>
                         </div>
                     </form>
@@ -200,7 +196,9 @@ function quizInnerTemplate(quiz,index) {
 }
 
 
-//the functionality for answering the questions
+//the functionality for answering the questions,
+//All of this functionality starts when the "Submit Answer" button is clicked for each question
+//Each answerTheQuestion function has the same functionality
 function answerTheQuestion1() {
     let category = document.getElementsByClassName('questionContent')[0].id
     let difficulty = document.getElementsByClassName('questionOptions')[0].id
@@ -210,38 +208,39 @@ function answerTheQuestion1() {
     let radio = document.getElementsByName('question1')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
-    console.log(selectedInput.nextElementSibling)
+    let answer1 = new answerResults(1, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false ) //constructor function to store their answer info after the user chooses answer
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}` //template for response to show if user selects wrong answer
+
     if(selectedInput === null) {
-        alert.classList.add('alert');
+        alert.classList.add('alert'); //alerts they haven't selected an answer
         alert.innerHTML = '!Please Select Answer!'
     } else if (selectedInput.id === 'correct_answer') {
-        alert.classList.remove('alert');
-        alert.classList.add('correct');
-        alert.innerHTML = 'Correct!'
+        alert.classList.remove('alert'); //removes alert if they forgot to select an answer before submitting
+        alert.classList.add('correct'); //the rest of the statement adds correct alert, changes boolean in constructor, adds scoreCount and totalCount.
+        alert.innerHTML = 'Correct!';
+        answer1.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
-            radio[i].disabled = true
+            radio[i].disabled = true //this disables the question from being changed after submitting
         }
         Scorecount += 1
         Totalcount += 1
-        activeScoreCard(Scorecount)
-        localStorage.setItem('Scorecount', JSON.stringify(Scorecount));
-        totalScore();
+        activeScoreCard(Scorecount) //updates scoreCard for each question
+        localStorage.setItem('Scorecount', JSON.stringify(Scorecount)); //stores info
+        totalScore(); 
     } else if (selectedInput.id === 'incorrect_answers') {
-        theirAnswer = theirAnswer + ' incorrect'
-        alert.classList.remove('alert');
+        alert.classList.remove('alert'); //similar functionality as correct answer if statement
         alert.classList.add('incorrect');
-        alert.innerHTML = 'Incorrect.'
+        alert.innerHTML = 'Incorrect.';
+        formDoc.appendChild(spanT) //shows the correct answer if the user got it wrong
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer1 = new answerResults(1, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer1.correctAnswer = true
-    }
-    quizResults.push(answer1)
+    quizResults.push(answer1) //pushes the question response info to an array later to be stored in local storage for the stats page
 }
 
 function answerTheQuestion2() {
@@ -253,6 +252,11 @@ function answerTheQuestion2() {
     let radio = document.getElementsByName('question2')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer2 = new answerResults(2, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -260,6 +264,7 @@ function answerTheQuestion2() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer2.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -272,15 +277,12 @@ function answerTheQuestion2() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
-    }
-    let answer2 = new answerResults(2, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer2.correctAnswer = true
     }
     quizResults.push(answer2)
 }
@@ -294,6 +296,11 @@ function answerTheQuestion3() {
     let radio = document.getElementsByName('question3')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer3 = new answerResults(3, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -301,6 +308,7 @@ function answerTheQuestion3() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer3.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -313,15 +321,12 @@ function answerTheQuestion3() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
-    }
-    let answer3 = new answerResults(3, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer3.correctAnswer = true
     }
     quizResults.push(answer3)
 }
@@ -335,6 +340,11 @@ function answerTheQuestion4() {
     let radio = document.getElementsByName('question4')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer4 = new answerResults(4, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -342,6 +352,7 @@ function answerTheQuestion4() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer4.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -354,18 +365,14 @@ function answerTheQuestion4() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer4 = new answerResults(4, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer4.correctAnswer = true
-    }
-    quizResults.push(answer4)
-    
+    quizResults.push(answer4)    
 }
 
 function answerTheQuestion5() {
@@ -377,6 +384,11 @@ function answerTheQuestion5() {
     let radio = document.getElementsByName('question5')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer5 = new answerResults(5, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -384,6 +396,7 @@ function answerTheQuestion5() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer5.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -396,18 +409,14 @@ function answerTheQuestion5() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer5 = new answerResults(5, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer5.correctAnswer = true
-    }
-    quizResults.push(answer5)
-    
+    quizResults.push(answer5)    
 }
 
 function answerTheQuestion6() {
@@ -419,6 +428,11 @@ function answerTheQuestion6() {
     let radio = document.getElementsByName('question6')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer6 = new answerResults(6, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -426,6 +440,7 @@ function answerTheQuestion6() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer6.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -438,18 +453,14 @@ function answerTheQuestion6() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer6 = new answerResults(6, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer6.correctAnswer = true
-    }
     quizResults.push(answer6)
-    
 }
 
 function answerTheQuestion7() {
@@ -461,6 +472,11 @@ function answerTheQuestion7() {
     let radio = document.getElementsByName('question7')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer7 = new answerResults(7, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -468,6 +484,7 @@ function answerTheQuestion7() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer7.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -480,18 +497,14 @@ function answerTheQuestion7() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer7 = new answerResults(7, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer7.correctAnswer = true
-    }
-    quizResults.push(answer7)
-    
+    quizResults.push(answer7)    
 }
 
 function answerTheQuestion8() {
@@ -503,6 +516,11 @@ function answerTheQuestion8() {
     let radio = document.getElementsByName('question8')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer8 = new answerResults(8, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -510,6 +528,7 @@ function answerTheQuestion8() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer8.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -522,18 +541,14 @@ function answerTheQuestion8() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer8 = new answerResults(8, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer8.correctAnswer = true
-    }
     quizResults.push(answer8)
-    
 }
 
 function answerTheQuestion9() {
@@ -545,6 +560,11 @@ function answerTheQuestion9() {
     let radio = document.getElementsByName('question9')
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer9 = new answerResults(9, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -552,6 +572,7 @@ function answerTheQuestion9() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer9.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -564,18 +585,14 @@ function answerTheQuestion9() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer9 = new answerResults(9, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false )
-    if(selectedInput.id === 'correct_answer') {
-        answer9.correctAnswer = true
-    }
     quizResults.push(answer9)
-    
 }
 
 function answerTheQuestion10() {
@@ -587,6 +604,11 @@ function answerTheQuestion10() {
     let radio = document.getElementsByName('question10') 
     let selectedInput = formDoc.querySelector('input[type=radio]:checked')
     let theirAnswer = selectedInput.nextElementSibling.innerHTML
+    let answer10 = new answerResults(10, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false)
+    let correctLabel = formDoc.querySelector('#correct_answer').nextElementSibling.innerHTML
+    let spanT = document.createElement("SPAN")
+    spanT.innerHTML = `- The correct answer is: ${correctLabel}`
+    
     if(selectedInput === null) {
         alert.classList.add('alert');
         alert.innerHTML = '!Please Select Answer!'
@@ -594,6 +616,7 @@ function answerTheQuestion10() {
         alert.classList.remove('alert');
         alert.classList.add('correct');
         alert.innerHTML = 'Correct!'
+        answer10.correctAnswer = true;
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
@@ -606,34 +629,26 @@ function answerTheQuestion10() {
         alert.classList.remove('alert');
         alert.classList.add('incorrect');
         alert.innerHTML = 'Incorrect.'
+        formDoc.appendChild(spanT)
         for(let i = 0; i < radio.length; i++) {
             radio[i].disabled = true
         }
         Totalcount += 1
         activeScoreCard()
     }
-    let answer10 = new answerResults(10, category, formDoc.firstElementChild.id, difficulty, question, theirAnswer, correctAnswer = false)
-    if(selectedInput.id === 'correct_answer') {
-        answer10.correctAnswer = true
-    }
     quizResults.push(answer10)
 }
 
+//If I have time this last weekend I'll try to condense the functions into 1. (unfortunately didn't have time to attemp this - Ian)
 
-//If I have time try to condense the functions into 1 foreach. -
-// - was difficult to figure out because the template literal was messing with -
-// - the data types
 
-let categoryGroup = document.getElementsByClassName('questionContent')
-let difficultyGroup = document.getElementsByClassName('questionOptions') 
-let typeGroup = document.getElementsByClassName('type')   
-let quizResults = []
+let quizResults = [] //array to store answer info
 
 
 //stores quiz information and then loads next page
 let totalSeconds = JSON.parse(localStorage.getItem('timeAverage'));
 function submitQuiz() {
-    if(Totalcount !== 10) {
+    if(Totalcount !== 10) { //This makes it impossible for the user to submit the quiz without answering all the questions / and if any question count errors occur(don't know if that second reason is good or not haha)
         return alert(`
         You haven't responded to all the questions
         Complete all 10 questions before submitting.`)
@@ -658,7 +673,7 @@ function submitQuiz() {
         return JSON.parse(localStorage.getItem('playedGames'));
     }
 
-    window.location.assign('stats.html');
+    window.location.assign('stats.html'); //after running everying it loads the next page
 }
 
 
@@ -674,7 +689,7 @@ function answerResults (number, category, type, difficulty, question, theirAnswe
 }
 
 
-//JS for the active counter when the user answers the question
+//JS for the active counter when the user answers each question
 function activeScoreCard () {
     let scoreCountTemp = 
     `
@@ -692,6 +707,8 @@ function activeScoreCard () {
             and/or try your luck with a new quiz!`);
         }, 800)
     }
+    //The alert originally would pop up before the final question total would show. 
+    //We added this so the alert would give the page time to change the active count before alerting the user his score
 }
 
 // JS for saving Scorecount to local storage

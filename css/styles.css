@@ -247,6 +247,17 @@ body {
   align-items: center;
   gap: 10px;
 }
+.questionContent .questionOptions .col.answers label {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+.questionContent .questionOptions span:nth-child(2) {
+  margin-left: 10px;
+  color: #b84343;
+  text-decoration: underline;
+}
 
 #scoreContainer {
   background: #DAF8FC;
